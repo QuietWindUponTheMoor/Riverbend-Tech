@@ -1,0 +1,237 @@
+* {
+  box-sizing: border-box;
+}
+
+*:not(input, style, script, noscript, title) {
+  display: flex;
+  flex-direction: column;
+}
+
+html, body {
+  font-family: Sans-serif, Helvetica !important;
+  background-color: #292524;
+  color: #ececec;
+}
+
+h1, h2, h3, h4, h5 {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+p, a {
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.text-green {
+  color: greenyellow !important;
+}
+
+.bg-blue {
+  background-color: blue !important;
+}
+
+.bg-green {
+  background-color: greenyellow !important;
+  color: black !important;
+}
+
+.bg-orange {
+  background-color: rgb(255, 155, 6) !important;
+  color: black !important;
+}
+
+.bg-red {
+  background-color: red !important;
+  color: whitesmoke !important;
+}
+
+.bg-yellow {
+  background-color: yellow !important;
+  color: brown !important;
+}
+
+.button {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid inset white;
+  cursor: pointer;
+}
+.button:hover {
+  opacity: 0.9;
+}
+
+#main {
+  justify-content: center;
+  align-items: center;
+}
+
+/**:not(.options-list) {
+    pointer-events: none;
+}*/
+.cb-input {
+  padding: 0.5rem;
+  border: 2px solid lightgray;
+  border-radius: 8px;
+}
+
+.options-list {
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  gap: 1rem;
+  background-color: black;
+  border: 2px solid lightgray;
+  border-radius: 8px;
+  max-height: 90vh;
+  overflow-y: scroll;
+}
+.options-list #option-prompt {
+  justify-content: center;
+  align-items: center;
+  font-size: 200%;
+  width: 100% !important;
+}
+.options-list .item {
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.options-list .asset-tag-examples {
+  display: none;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 5rem;
+  gap: 1rem;
+}
+.options-list .asset-tag-examples .img-container {
+  justify-content: center;
+  width: 500px;
+}
+.options-list .asset-tag-examples .img-container img {
+  width: 100%;
+  border: 2px solid lightgray;
+  border-radius: 8px;
+}
+.options-list .progressions {
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.options-list .progressions .option {
+  background-color: blue;
+}
+.options-list .option {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 2px solid lightgray;
+  background-color: #ca401d;
+  cursor: pointer;
+}
+.options-list .option:hover {
+  padding: calc(0.5rem + 1px);
+  border: 1px solid #a0a0a0;
+}
+.options-list .pages {
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.checkouts, .loaners {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 90%;
+  padding: 2rem;
+  background-color: black;
+  border: 2px solid lightgray;
+  border-radius: 8px;
+  gap: 1rem;
+}
+.checkouts h1, .checkouts h2, .checkouts h3, .loaners h1, .loaners h2, .loaners h3 {
+  margin: 0;
+}
+.checkouts .filters, .loaners .filters {
+  border: 2px solid lightgray;
+  border-radius: 8px;
+  width: 100%;
+  padding: 1rem;
+  gap: 0.75rem;
+}
+.checkouts .filters .section, .loaners .filters .section {
+  gap: 1rem;
+}
+.checkouts .filters .section .filter-button, .loaners .filters .section .filter-button {
+  padding: 0.5rem;
+  background-color: blue;
+  border: 1px solid white;
+  border-radius: calc(8px - 9%);
+  cursor: pointer;
+}
+.checkouts .filters .section .filter-button:hover, .loaners .filters .section .filter-button:hover {
+  opacity: 0.85;
+}
+.checkouts .list, .loaners .list {
+  width: 100%;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid lightgray;
+  gap: 0.5rem;
+}
+.checkouts .list:last-child, .loaners .list:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.checkouts .list .record, .loaners .list .record {
+  width: 100%;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: #292524;
+  border: 2px solid #ececec;
+}
+.checkouts .list .record .row-one, .checkouts .list .record .row-two, .checkouts .list .record .row-three, .loaners .list .record .row-one, .loaners .list .record .row-two, .loaners .list .record .row-three {
+  justify-content: space-between;
+  width: 100%;
+}
+.checkouts .list .record .row-one input, .checkouts .list .record .row-two input, .checkouts .list .record .row-three input, .loaners .list .record .row-one input, .loaners .list .record .row-two input, .loaners .list .record .row-three input {
+  width: 16%;
+  font-weight: bold;
+}
+.checkouts .list .record .row-one textarea, .checkouts .list .record .row-one .issue-textbox, .checkouts .list .record .row-two textarea, .checkouts .list .record .row-two .issue-textbox, .checkouts .list .record .row-three textarea, .checkouts .list .record .row-three .issue-textbox, .loaners .list .record .row-one textarea, .loaners .list .record .row-one .issue-textbox, .loaners .list .record .row-two textarea, .loaners .list .record .row-two .issue-textbox, .loaners .list .record .row-three textarea, .loaners .list .record .row-three .issue-textbox {
+  width: 100%;
+  height: 3rem;
+  resize: vertical;
+  font-family: Sans-serif, Helvetica;
+}
+.checkouts .list .record .row-one input, .checkouts .list .record .row-one .issue-textbox, .checkouts .list .record .row-two input, .checkouts .list .record .row-two .issue-textbox, .checkouts .list .record .row-three input, .checkouts .list .record .row-three .issue-textbox, .loaners .list .record .row-one input, .loaners .list .record .row-one .issue-textbox, .loaners .list .record .row-two input, .loaners .list .record .row-two .issue-textbox, .loaners .list .record .row-three input, .loaners .list .record .row-three .issue-textbox {
+  padding: 0.5rem;
+  color: white;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.checkouts .list .record .row-one input:focus, .checkouts .list .record .row-one .issue-textbox:focus, .checkouts .list .record .row-two input:focus, .checkouts .list .record .row-two .issue-textbox:focus, .checkouts .list .record .row-three input:focus, .checkouts .list .record .row-three .issue-textbox:focus, .loaners .list .record .row-one input:focus, .loaners .list .record .row-one .issue-textbox:focus, .loaners .list .record .row-two input:focus, .loaners .list .record .row-two .issue-textbox:focus, .loaners .list .record .row-three input:focus, .loaners .list .record .row-three .issue-textbox:focus {
+  border: 2px solid white;
+}
+.checkouts .list .record .row-three, .loaners .list .record .row-three {
+  justify-content: flex-start;
+  gap: 0.5rem;
+}/*# sourceMappingURL=main.css.map */
