@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chromebook Checkout</title>
+    <link rel="stylesheet" href="/stylesheets/compiled/main.css">
+    <script src="/src/scripts/jquery/jquery-3.7.1.js"></script>
+</head>
+<body id="main">
+
+    <script type="text/javascript">
+    let step = 1;
+
+    let settings = {
+        school: null,
+        grade: null,
+        cb_num: null,
+        loaner_num: null,
+        student: null,
+        brief_issue: null,
+    };
+    </script>
+
+    <div class="options-list">
+
+        <div class="pages">
+            <div class="button bg-orange" onclick="adminpage('FES');">
+                <p class="option-text" id="admin-button" data-admin-open="false">Admin Sign-In</p>
+            </div>
+    
+            <div class="button bg-blue" onclick="window.location.assign('/checkouts.html');">
+                <p class="option-text">Checkouts</p>
+            </div>
+    
+            <div class="button bg-blue" onclick="window.location.assign('/loaners-list.html');">
+                <p class="option-text">Loaners</p>
+            </div>
+        </div>
+
+        <!-- Admin select menu -->
+        <div class="item" id="admin-page">
+            <h1 id="option-prompt">You are in admin mode.</h1>
+
+    
+        </div>
+
+        <div class="item" data-step="1">
+            <h1 id="option-prompt">Please select a school/building.</h1>
+
+            <div class="option" onclick="checks('FES');">
+                <p class="option-text">Fulton Elementary School</p>
+            </div>
+            <div class="option" onclick="checks('RBMS');">
+                <p class="option-text">River Bend Middle School</p>
+            </div>
+            <div class="option" onclick="checks('FHS');">
+                <p class="option-text">Fulton High School</p>
+            </div>
+        </div>
+
+        <div class="item row wrap" data-step="2">
+            <h1 id="option-prompt">Please select a grade level.</h1>
+            
+            <div class="option fes" onclick="checks(0);">
+                <p class="option-text">Kindergarten</p>
+            </div>
+            <div class="option fes" onclick="checks(1);">
+                <p class="option-text">1st Grade</p>
+            </div>
+            <div class="option fes" onclick="checks(2);">
+                <p class="option-text">2nd Grade</p>
+            </div>
+            <div class="option fes" onclick="checks(3);">
+                <p class="option-text">3rd Grade</p>
+            </div>
+            <div class="option fes" onclick="checks(4);">
+                <p class="option-text">4th Grade</p>
+            </div>
+            <div class="option fes" onclick="checks(5);">
+                <p class="option-text">5th Grade</p>
+            </div>
+            <div class="option rbms" onclick="checks(6);">
+                <p class="option-text">6th Grade</p>
+            </div>
+            <div class="option rbms" onclick="checks(7);">
+                <p class="option-text">7th Grade</p>
+            </div>
+            <div class="option rbms" onclick="checks(8);">
+                <p class="option-text">8th Grade</p>
+            </div>
+            <div class="option fhs" onclick="checks(9);">
+                <p class="option-text">9th Grade</p>
+            </div>
+            <div class="option fhs" onclick="checks(10);">
+                <p class="option-text">10th Grade</p>
+            </div>
+            <div class="option fhs" onclick="checks(11);">
+                <p class="option-text">11th Grade</p>
+            </div>
+            <div class="option fhs" onclick="checks(12);">
+                <p class="option-text">12th Grade</p>
+            </div>
+        </div>
+
+        <div class="item" data-step="3">
+            <h1 id="option-prompt">Please enter the number of the broken Chromebook.</h1>
+            
+            <input class="cb-input" id="cb-num" type="text" minlength="1" maxlength="20" placeholder="e.g. 241HP21"/>
+            <div class="option" onclick="checks($('#cb-num').val());">
+                <p class="option-text">Next</p>
+            </div>
+
+            <div class="option bg-blue" onclick="showEx();">
+                <p class="option-text">Show Examples</p>
+            </div>
+            <div class="option bg-blue" onclick="hideEx();">
+                <p class="option-text">Hide Examples</p>
+            </div>
+
+            <div class="asset-tag-examples">
+                <div class="img-container"><img src="/assets/asset_tag_examples/1.jpg"/></div>
+                <div class="img-container"><img src="/assets/asset_tag_examples/2.jpg"/></div>
+                <div class="img-container"><img src="/assets/asset_tag_examples/3.jpg"/></div>
+                <div class="img-container"><img src="/assets/asset_tag_examples/4.jpg"/></div>
+                
+                <div class="option bg-blue" onclick="showEx();">
+                    <p class="option-text">Show Examples</p>
+                </div>
+                <div class="option bg-blue" onclick="hideEx();">
+                    <p class="option-text">Hide Examples</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item" data-step="4">
+            <h1 id="option-prompt">Please enter the number of the loaner Chromebook you are taking.</h1>
+            
+            <input class="cb-input" id="loaner-num" type="text" minlength="1" maxlength="20" placeholder="e.g. 167HPT19"/>
+            <div class="option" onclick="checks($('#loaner-num').val());">
+                <p class="option-text">Next</p>
+            </div>
+
+            <div class="option bg-blue" onclick="showEx();">
+                <p class="option-text">Show Examples</p>
+            </div>
+            <div class="option bg-blue" onclick="hideEx();">
+                <p class="option-text">Hide Examples</p>
+            </div>
+
+            <div class="asset-tag-examples">
+                <div class="img-container"><img src="/assets/asset_tag_examples/1.jpg"/></div>
+                <div class="img-container"><img src="/assets/asset_tag_examples/2.jpg"/></div>
+                <div class="img-container"><img src="/assets/asset_tag_examples/3.jpg"/></div>
+                <div class="img-container"><img src="/assets/asset_tag_examples/4.jpg"/></div>
+
+                <div class="option bg-blue" onclick="showEx();">
+                    <p class="option-text">Show Examples</p>
+                </div>
+                <div class="option bg-blue" onclick="hideEx();">
+                    <p class="option-text">Hide Examples</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item" data-step="5">
+            <h1 id="option-prompt">Please enter your student ID.</h1>
+            
+            <input class="cb-input" id="student" type="text" minlength="1" maxlength="10" placeholder="e.g. 2032034"/>
+            <div class="option" onclick="checks($('#student').val());">
+                <p class="option-text">Next</p>
+            </div>
+        </div>
+
+        <div class="item" data-step="6">
+            <h1 id="option-prompt">Briefly describe the issue.</h1>
+            
+            <input class="cb-input" id="brief-issue" type="text" minlength="1" maxlength="1200" placeholder="Keyboard stopped working"/>
+            <div class="option bg-green" onclick="checks($('#brief-issue').val());">
+                <p class="option-text">Finish</p>
+            </div>
+        </div>
+        
+        <div class="item" data-step="7">
+            <h1 class="text-green" id="option-prompt">Thank you! Please take the loaner and put the broken Chromebook in the broken pile.</h1>
+            <h3 class="text-green" id="option-prompt">Please wait, resetting...</h3>
+        </div>
+
+        <div class="progressions">
+            <div class="option" onclick="back();" id="back">
+                <p class="option-text">< Back</p>
+            </div>
+            <div class="option" onclick="next();" id="next">
+                <p class="option-text">Next ></p>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="/src/scripts/main_form.js"></script>
+    <script type="text/javascript" src="/src/scripts/admin.js"></script>
+    <script type="text/javascript">
+    // Hide admin mode by default
+    $("#admin-page").hide();
+
+    // Initiate exporting
+    function csvexport() {
+        $.ajax({
+            type: "GET",
+            url: "/php/database/csv_export.php",
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (response) {
+                console.error(response);
+            }
+        });
+    }
+
+    // Start exporting the database once every 60 minutes
+    $(document).ready(() => {
+        csvexport();
+        setInterval(() => {
+            csvexport();
+        }, 36_00_000);
+    });
+    </script>
+ 
+</body>
+</html>
