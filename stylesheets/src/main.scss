@@ -36,7 +36,10 @@ p, a {
     margin: 0;
     padding: 0;
 }
-
+a {
+    text-decoration: none !important;
+    color: inherit;
+}
 .row {
     flex-direction: row;
 }
@@ -56,6 +59,10 @@ p, a {
     background-color: greenyellow !important;
     color: black !important;
 }
+.bg-normal {
+    background-color: rgb(202, 206, 195) !important;
+    color: black !important;
+}
 .bg-orange {
     background-color: rgb(255, 155, 6) !important;
     color: black !important;
@@ -73,9 +80,23 @@ p, a {
     border-radius: 4px;
     border: 1px solid inset white;
     cursor: pointer;
+    user-select: none;
     &:hover {
         opacity: 0.9;
     }
+}
+.disabled, .disabled:hover {
+    opacity: 0.2;
+    cursor: default !important;
+}
+.selected {
+    border: 2px solid white;
+}
+.tooltips {
+    color: orange !important;
+}
+.grouped-by {
+    color: cyan !important;
 }
 
 #main {
@@ -183,14 +204,8 @@ p, a {
         .section {
             gap: 1rem;
             .filter-button {
-                padding: 0.5rem;
-                background-color: blue;
-                border: 1px solid white;
-                border-radius: calc($b-med - 9%);
-                cursor: pointer;
-                &:hover {
-                    opacity: 0.85;
-                }
+                justify-content: center;
+                align-items: center;
             }
         }
     }
@@ -208,12 +223,24 @@ p, a {
             gap: 0.5rem;
             padding: 0.5rem;
             background-color: $main-background;border: 2px solid $main-text;
-            .row-one, .row-two, .row-three {
+            .row-two, .row-three, .row-four {
+                display: none; // Default
+            }
+            .row-one, .row-two, .row-three, .row-four {
                 justify-content: space-between;
                 width: 100%;
-                input {
+                input, label {
                     width: 16%;
                     font-weight: bold;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                }
+                label {
+                    font-weight: normal !important;
+                    font-size: 70%;
+                    opacity: 0.8;
+                    color: orange;
                 }
                 textarea, .issue-textbox {
                     width: 100%;
@@ -232,7 +259,7 @@ p, a {
                     }
                 }
             }
-            .row-three {
+            .record-controls {
                 justify-content: flex-start;
                 gap: 0.5rem;
             }

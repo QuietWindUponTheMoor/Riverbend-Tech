@@ -24,6 +24,11 @@ p, a {
   padding: 0;
 }
 
+a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
 .row {
   flex-direction: row;
 }
@@ -49,6 +54,11 @@ p, a {
   color: black !important;
 }
 
+.bg-normal {
+  background-color: rgb(202, 206, 195) !important;
+  color: black !important;
+}
+
 .bg-orange {
   background-color: rgb(255, 155, 6) !important;
   color: black !important;
@@ -69,9 +79,29 @@ p, a {
   border-radius: 4px;
   border: 1px solid inset white;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .button:hover {
   opacity: 0.9;
+}
+
+.disabled, .disabled:hover {
+  opacity: 0.2;
+  cursor: default !important;
+}
+
+.selected {
+  border: 2px solid white;
+}
+
+.tooltips {
+  color: orange !important;
+}
+
+.grouped-by {
+  color: cyan !important;
 }
 
 #main {
@@ -181,14 +211,8 @@ p, a {
   gap: 1rem;
 }
 .checkouts .filters .section .filter-button, .loaners .filters .section .filter-button {
-  padding: 0.5rem;
-  background-color: blue;
-  border: 1px solid white;
-  border-radius: calc(8px - 9%);
-  cursor: pointer;
-}
-.checkouts .filters .section .filter-button:hover, .loaners .filters .section .filter-button:hover {
-  opacity: 0.85;
+  justify-content: center;
+  align-items: center;
 }
 .checkouts .list, .loaners .list {
   width: 100%;
@@ -207,31 +231,43 @@ p, a {
   background-color: #292524;
   border: 2px solid #ececec;
 }
-.checkouts .list .record .row-one, .checkouts .list .record .row-two, .checkouts .list .record .row-three, .loaners .list .record .row-one, .loaners .list .record .row-two, .loaners .list .record .row-three {
+.checkouts .list .record .row-two, .checkouts .list .record .row-three, .checkouts .list .record .row-four, .loaners .list .record .row-two, .loaners .list .record .row-three, .loaners .list .record .row-four {
+  display: none;
+}
+.checkouts .list .record .row-one, .checkouts .list .record .row-two, .checkouts .list .record .row-three, .checkouts .list .record .row-four, .loaners .list .record .row-one, .loaners .list .record .row-two, .loaners .list .record .row-three, .loaners .list .record .row-four {
   justify-content: space-between;
   width: 100%;
 }
-.checkouts .list .record .row-one input, .checkouts .list .record .row-two input, .checkouts .list .record .row-three input, .loaners .list .record .row-one input, .loaners .list .record .row-two input, .loaners .list .record .row-three input {
+.checkouts .list .record .row-one input, .checkouts .list .record .row-one label, .checkouts .list .record .row-two input, .checkouts .list .record .row-two label, .checkouts .list .record .row-three input, .checkouts .list .record .row-three label, .checkouts .list .record .row-four input, .checkouts .list .record .row-four label, .loaners .list .record .row-one input, .loaners .list .record .row-one label, .loaners .list .record .row-two input, .loaners .list .record .row-two label, .loaners .list .record .row-three input, .loaners .list .record .row-three label, .loaners .list .record .row-four input, .loaners .list .record .row-four label {
   width: 16%;
   font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
-.checkouts .list .record .row-one textarea, .checkouts .list .record .row-one .issue-textbox, .checkouts .list .record .row-two textarea, .checkouts .list .record .row-two .issue-textbox, .checkouts .list .record .row-three textarea, .checkouts .list .record .row-three .issue-textbox, .loaners .list .record .row-one textarea, .loaners .list .record .row-one .issue-textbox, .loaners .list .record .row-two textarea, .loaners .list .record .row-two .issue-textbox, .loaners .list .record .row-three textarea, .loaners .list .record .row-three .issue-textbox {
+.checkouts .list .record .row-one label, .checkouts .list .record .row-two label, .checkouts .list .record .row-three label, .checkouts .list .record .row-four label, .loaners .list .record .row-one label, .loaners .list .record .row-two label, .loaners .list .record .row-three label, .loaners .list .record .row-four label {
+  font-weight: normal !important;
+  font-size: 70%;
+  opacity: 0.8;
+  color: orange;
+}
+.checkouts .list .record .row-one textarea, .checkouts .list .record .row-one .issue-textbox, .checkouts .list .record .row-two textarea, .checkouts .list .record .row-two .issue-textbox, .checkouts .list .record .row-three textarea, .checkouts .list .record .row-three .issue-textbox, .checkouts .list .record .row-four textarea, .checkouts .list .record .row-four .issue-textbox, .loaners .list .record .row-one textarea, .loaners .list .record .row-one .issue-textbox, .loaners .list .record .row-two textarea, .loaners .list .record .row-two .issue-textbox, .loaners .list .record .row-three textarea, .loaners .list .record .row-three .issue-textbox, .loaners .list .record .row-four textarea, .loaners .list .record .row-four .issue-textbox {
   width: 100%;
   height: 3rem;
   resize: vertical;
   font-family: Sans-serif, Helvetica;
 }
-.checkouts .list .record .row-one input, .checkouts .list .record .row-one .issue-textbox, .checkouts .list .record .row-two input, .checkouts .list .record .row-two .issue-textbox, .checkouts .list .record .row-three input, .checkouts .list .record .row-three .issue-textbox, .loaners .list .record .row-one input, .loaners .list .record .row-one .issue-textbox, .loaners .list .record .row-two input, .loaners .list .record .row-two .issue-textbox, .loaners .list .record .row-three input, .loaners .list .record .row-three .issue-textbox {
+.checkouts .list .record .row-one input, .checkouts .list .record .row-one .issue-textbox, .checkouts .list .record .row-two input, .checkouts .list .record .row-two .issue-textbox, .checkouts .list .record .row-three input, .checkouts .list .record .row-three .issue-textbox, .checkouts .list .record .row-four input, .checkouts .list .record .row-four .issue-textbox, .loaners .list .record .row-one input, .loaners .list .record .row-one .issue-textbox, .loaners .list .record .row-two input, .loaners .list .record .row-two .issue-textbox, .loaners .list .record .row-three input, .loaners .list .record .row-three .issue-textbox, .loaners .list .record .row-four input, .loaners .list .record .row-four .issue-textbox {
   padding: 0.5rem;
   color: white;
   background-color: transparent;
   border: none;
   outline: none;
 }
-.checkouts .list .record .row-one input:focus, .checkouts .list .record .row-one .issue-textbox:focus, .checkouts .list .record .row-two input:focus, .checkouts .list .record .row-two .issue-textbox:focus, .checkouts .list .record .row-three input:focus, .checkouts .list .record .row-three .issue-textbox:focus, .loaners .list .record .row-one input:focus, .loaners .list .record .row-one .issue-textbox:focus, .loaners .list .record .row-two input:focus, .loaners .list .record .row-two .issue-textbox:focus, .loaners .list .record .row-three input:focus, .loaners .list .record .row-three .issue-textbox:focus {
+.checkouts .list .record .row-one input:focus, .checkouts .list .record .row-one .issue-textbox:focus, .checkouts .list .record .row-two input:focus, .checkouts .list .record .row-two .issue-textbox:focus, .checkouts .list .record .row-three input:focus, .checkouts .list .record .row-three .issue-textbox:focus, .checkouts .list .record .row-four input:focus, .checkouts .list .record .row-four .issue-textbox:focus, .loaners .list .record .row-one input:focus, .loaners .list .record .row-one .issue-textbox:focus, .loaners .list .record .row-two input:focus, .loaners .list .record .row-two .issue-textbox:focus, .loaners .list .record .row-three input:focus, .loaners .list .record .row-three .issue-textbox:focus, .loaners .list .record .row-four input:focus, .loaners .list .record .row-four .issue-textbox:focus {
   border: 2px solid white;
 }
-.checkouts .list .record .row-three, .loaners .list .record .row-three {
+.checkouts .list .record .record-controls, .loaners .list .record .record-controls {
   justify-content: flex-start;
   gap: 0.5rem;
 }/*# sourceMappingURL=main.css.map */
