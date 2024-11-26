@@ -10,6 +10,22 @@
 <body id="main">
 
     <?php
+    $ordering = "ASC";
+    $grouping = "grade";
+    // GET variables
+    if (!isset($_GET["grouping"])) {
+        $_GET["grouping"] = "grade";
+        $grouping = "grade";
+    } else {
+        $grouping = $_GET["grouping"];
+    }
+    if (!isset($_GET["ordering"])) {
+        $_GET["ordering"] = "ASC";
+        $ordering = "ASC";
+    } else {
+        $ordering = $_GET["ordering"];
+    }
+
     // Init all records
     $records = [
         "all" => [],
@@ -33,14 +49,6 @@
 
     </script>
     ';
-
-    // GET variables
-    if (!isset($_GET["grouping"])) {
-        $_GET["grouping"] = "grade";
-    }
-    if (!isset($_GET["ordering"])) {
-        $_GET["ordering"] = "ASC";
-    }
     ?>
 
     <div class="checkouts">
@@ -56,7 +64,6 @@
                 <a class="filter-button button bg-green <?php if ($_GET["ordering"] === "DESC") {echo "selected";} ?>" href="/checkouts.php<?php echo '?grouping='.$_GET["grouping"].'&ordering=DESC'; ?>">Descending [Z-a] [9-1]</a>
             </div>
         </div>
-        <h1 class="grouped-by">Grouped By: Grade Level, ASC</h1>
         <p class="tooltips">Click on a record to edit. Press enter to save the new value.</p>
 
         <?php
@@ -122,9 +129,22 @@
 
         // Helper functions
         function displayRecord($r) {
+            $color = "";
+            if ($r["softDeleted"] == 1) {
+                $color = "deleted-record";
+            }
+            
+            if ($r["started"] == 1) {
+                $color = "started-record";
+            }
+            
+            if ($r["finished"] == 1) {
+                $color = "finished-record";
+            }
+
             echo
             '
-            <div class="record col" id="record-'.$r["rid"].'">
+            <div class="record '.$color.' col" id="record-'.$r["rid"].'">
                 <div class="row-one row">
                     <p class="recordID-input" id="rid">'.$r["rid"].'</p>
                     <input id="sid" type="text" value="'.$r["sid"].'" placeholder="Student ID"/>

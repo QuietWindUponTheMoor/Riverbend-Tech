@@ -232,11 +232,21 @@ a {
             padding-bottom: 0;
             border-bottom: none;
         }
+        .deleted-record {
+            border: 2px solid $riverbend-red !important;
+        }
+        .finished-record {
+            border: 2px solid green !important;
+        }
+        .started-record {
+            border: 2px solid yellow !important;
+        }
         .record {
             width: 100%;
             gap: 0.5rem;
             padding: 0.5rem;
-            background-color: $main-background;border: 2px solid $main-text;
+            background-color: $main-background;
+            border: 2px solid $main-text;
             .row-two, .row-three, .row-four {
                 display: none; // Default
             }

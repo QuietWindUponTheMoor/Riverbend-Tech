@@ -1,8 +1,8 @@
 <?php
 
 // Import required modules
-require("../connector.php");
-require("../database/queries.php");
+require($_SERVER["DOCUMENT_ROOT"]."/php/connector.php");
+require($_SERVER["DOCUMENT_ROOT"]."/php/database/queries.php");
 
 // Process data
 $data = array_filter($_POST);

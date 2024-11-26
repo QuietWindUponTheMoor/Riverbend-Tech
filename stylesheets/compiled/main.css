@@ -236,6 +236,15 @@ a {
   padding-bottom: 0;
   border-bottom: none;
 }
+.checkouts .list .deleted-record, .loaners .list .deleted-record {
+  border: 2px solid #ca401d !important;
+}
+.checkouts .list .finished-record, .loaners .list .finished-record {
+  border: 2px solid green !important;
+}
+.checkouts .list .started-record, .loaners .list .started-record {
+  border: 2px solid yellow !important;
+}
 .checkouts .list .record, .loaners .list .record {
   width: 100%;
   gap: 0.5rem;

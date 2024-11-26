@@ -29,14 +29,34 @@ CREATE TABLE IF NOT EXISTS checkouts (
   grade int(2) NOT NULL,
   issue varchar(1200) NOT NULL
 );
-
 ALTER TABLE checkouts ADD COLUMN (
     started BOOLEAN DEFAULT 0,
     finished BOOLEAN DEFAULT 0,
     softDeleted BOOLEAN DEFAULT 0
 );
 
+CREATE TABLE IF NOT EXISTS checkouts_del (
+  recordID bigint(44) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  studentID bigint(44) NOT NULL,
+  assignedCB varchar(20) NOT NULL,
+  loanerCB varchar(20) NOT NULL,
+  school varchar(4) NOT NULL,
+  grade int(2) NOT NULL,
+  issue varchar(1200) NOT NULL
+);
+ALTER TABLE checkouts_del ADD COLUMN (
+    started BOOLEAN DEFAULT 0,
+    finished BOOLEAN DEFAULT 0,
+    softDeleted BOOLEAN DEFAULT 0
+);
+
 CREATE TABLE IF NOT EXISTS loaners (
+    loaner VARCHAR(25) PRIMARY KEY NOT NULL,
+    serial VARCHAR(15) DEFAULT NULL,
+    assignment VARCHAR(128) DEFAULT "SPARE" NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS loaners_del (
     loaner VARCHAR(25) PRIMARY KEY NOT NULL,
     serial VARCHAR(15) DEFAULT NULL,
     assignment VARCHAR(128) DEFAULT "SPARE" NOT NULL

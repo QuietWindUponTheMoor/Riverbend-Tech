@@ -1,3 +1,5 @@
+// Hide admin mode by default
+$("#admin-page").hide();
 
 // Functions
 function adminpage() {

@@ -8,7 +8,7 @@ try {
     $Query = new Query(
         $conn,
         "sa",
-        "SELECT * FROM checkouts WHERE softDeleted=0;",
+        "SELECT * FROM checkouts ORDER BY $grouping $ordering;",
         null,
         null,
     );
@@ -25,6 +25,9 @@ try {
             $school = $r["school"];
             $grade = $r["grade"];
             $issue = $r["issue"];
+            $started = $r["started"];
+            $finished = $r["finished"];
+            $softDeleted = $r["softDeleted"];
 
             // Object to push
             $record = [
@@ -35,6 +38,9 @@ try {
                 "school" => $school,
                 "grade" => $grade,
                 "issue" => $issue,
+                "started" => $started,
+                "finished" => $finished,
+                "softDeleted" => $softDeleted,
             ];
 
             // Push to all

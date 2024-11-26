@@ -29,13 +29,13 @@ function markAs(mark, recordID) {
     let confirmation;
     switch (mark) {
         case "started":
-            confirmation = confirm("Are you sure you want to mark this record as started?");
+            startRecord(recordID);
             break;
         case "finished":
-            confirmation = confirm("Are you sure you want to mark this record as finished?");
+            finishRecord(recordID);
             break;
         case "deleted":
-            confirmation = confirm("Are you sure you want to delete this record? This cannot be undone.");
+            deleteRecord(recordID);
             break;
         default:
             break;
@@ -122,6 +122,70 @@ function submitChangesTrigger(recordID) {
         success: function (response) {
             if (parseInt(response) === 1) {
                 modal("success", `Successfully updated record #${rid}!`);
+            } else {
+                console.error(response);
+            }
+        }
+    });
+}
+function deleteRecord(recordID) {
+    // Confirm
+    confirmUpdate = confirmation("Are you sure you want to delete this record? This can only be undone by someone with access to the database.");
+    if (confirmUpdate === false) return;
+
+    // Soft delete
+    $.ajax({  
+        type: "POST",  
+        url: "/php/soft_delete.php",
+        data: {
+            type: "checkouts", // Type can either be "checkouts" or "loaners" for soft deletion
+            rid: recordID,
+        },
+        success: function (response) {
+            if (parseInt(response) === 1) {
+                modal("success", `Successfully deleted record #${recordID}!`);
+
+                $(`#record-${recordID}`).removeClass("started-record").removeClass("finished-record").addClass("deleted-record");
+            } else {
+                console.error(response);
+            }
+        }
+    });
+}
+function startRecord(recordID) {
+    // Soft delete
+    $.ajax({  
+        type: "POST",  
+        url: "/php/mark_checkout_as.php",
+        data: {
+            type: "started",
+            rid: recordID,
+        },
+        success: function (response) {
+            if (parseInt(response) === 1) {
+                modal("success", `Successfully marked record #${recordID} as started!`);
+
+                $(`#record-${recordID}`).removeClass("deleted-record").removeClass("finished-record").addClass("started-record");
+            } else {
+                console.error(response);
+            }
+        }
+    });
+}
+function finishRecord(recordID) {
+    // Soft delete
+    $.ajax({  
+        type: "POST",  
+        url: "/php/mark_checkout_as.php",
+        data: {
+            type: "finished",
+            rid: recordID,
+        },
+        success: function (response) {
+            if (parseInt(response) === 1) {
+                modal("success", `Successfully marked record #${recordID} as finished!`);
+
+                $(`#record-${recordID}`).removeClass("deleted-record").removeClass("started-record").addClass("finished-record");
             } else {
                 console.error(response);
             }
