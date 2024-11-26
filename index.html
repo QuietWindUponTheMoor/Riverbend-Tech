@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chromebook Checkout</title>
     <link rel="stylesheet" href="/stylesheets/compiled/main.css">
-    <script src="/src/scripts/jquery/jquery-3.7.1.js"></script>
+    <script type="text/javascript" src="/src/scripts/jquery/jquery-3.7.1.js"></script>
 </head>
 <body id="main">
 
@@ -202,28 +202,6 @@
     <script type="text/javascript">
     // Hide admin mode by default
     $("#admin-page").hide();
-
-    // Initiate exporting
-    function csvexport() {
-        $.ajax({
-            type: "GET",
-            url: "/php/database/csv_export.php",
-            success: function (response) {
-                console.log(response);
-            },
-            error: function (response) {
-                console.error(response);
-            }
-        });
-    }
-
-    // Start exporting the database once every 60 minutes
-    $(document).ready(() => {
-        csvexport();
-        setInterval(() => {
-            csvexport();
-        }, 36_00_000);
-    });
     </script>
  
 </body>
