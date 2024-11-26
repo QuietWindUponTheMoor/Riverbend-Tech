@@ -30,6 +30,12 @@ CREATE TABLE IF NOT EXISTS checkouts (
   issue varchar(1200) NOT NULL
 );
 
+ALTER TABLE checkouts ADD COLUMN (
+    started BOOLEAN DEFAULT 0,
+    finished BOOLEAN DEFAULT 0,
+    softDeleted BOOLEAN DEFAULT 0
+);
+
 CREATE TABLE IF NOT EXISTS loaners (
     loaner VARCHAR(25) PRIMARY KEY NOT NULL,
     serial VARCHAR(15) DEFAULT NULL,

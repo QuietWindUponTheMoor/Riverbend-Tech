@@ -103,9 +103,23 @@ a {
     justify-content: center;
     align-items: center;
 }
-/**:not(.options-list) {
-    pointer-events: none;
-}*/
+.msg-modal {
+    flex-direction: row;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid white;
+    background-color: green;
+    border-radius: $b-med;
+    padding: 0.75rem;
+    .modal-info {
+        font-weight: bold;
+    }
+}
+
+
+
 
 .cb-input {
     padding: 0.5rem;
@@ -229,7 +243,10 @@ a {
             .row-one, .row-two, .row-three, .row-four {
                 justify-content: space-between;
                 width: 100%;
-                input, label {
+                .recordID-input:focus {
+                    border: none;
+                }
+                input, label, .recordID-input {
                     width: 16%;
                     font-weight: bold;
                     justify-content: center;

@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chromebook Checkout</title>
     <link rel="stylesheet" href="/stylesheets/compiled/main.css">
-    <script src="/src/scripts/jquery/jquery-3.7.1.js"></script>
+    <script type="text/javascript" src="/src/scripts/jquery/jquery-3.7.1.js"></script>
 </head>
 <body id="main">
 
     <?php
     // Init all records
     $records = [
+        "all" => [],
         "8g" => [],
         "7g" => [],
         "6g" => [],
@@ -22,6 +23,16 @@
 
     // Fetch all records, then organize
     require($_SERVER["DOCUMENT_ROOT"]."/php/fetch_checkouts.php");
+
+    // Set JavaScript object
+    $jsJSON = json_encode($records, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+    echo
+    '
+    <script type="text/javascript">
+    let records = '.$jsJSON.';
+
+    </script>
+    ';
 
     // GET variables
     if (!isset($_GET["grouping"])) {
@@ -113,14 +124,14 @@
         function displayRecord($r) {
             echo
             '
-            <div class="record col">
+            <div class="record col" id="record-'.$r["rid"].'">
                 <div class="row-one row">
-                    <input type="text" value="'.$r["rid"].'" placeholder="Record ID"/>
-                    <input type="text" value="'.$r["sid"].'" placeholder="Student ID"/>
-                    <input type="text" value="'.$r["assignedCB"].'" placeholder="Assigned Chromebook Number"/>
-                    <input type="text" value="'.$r["loanerCB"].'" placeholder="Loaner Chromebook number"/>
-                    <input type="text" value="'.$r["school"].'" placeholder="School"/>
-                    <input type="text" value="'.$r["grade"].'" placeholder="Grade Level"/>
+                    <p class="recordID-input" id="rid">'.$r["rid"].'</p>
+                    <input id="sid" type="text" value="'.$r["sid"].'" placeholder="Student ID"/>
+                    <input id="assignedCB" type="text" value="'.$r["assignedCB"].'" placeholder="Assigned Chromebook Number"/>
+                    <input id="loanerCB" type="text" value="'.$r["loanerCB"].'" placeholder="Loaner Chromebook number"/>
+                    <input id="school" type="text" value="'.$r["school"].'" placeholder="School"/>
+                    <input id="grade" type="text" value="'.$r["grade"].'" placeholder="Grade Level"/>
                 </div>
                 <div class="row-two row">
                     <label>Record ID</label>
@@ -131,13 +142,14 @@
                     <label>Grade</label>
                 </div>
                 <div class="row-three row">
-                    <textarea class="issue-textbox" type="text" maxlength="1200" placeholder="Brief Issue Here">'.$r["issue"].'</textarea>
+                    <textarea id="issue" class="issue-textbox" type="text" maxlength="1200" placeholder="Brief Issue Here">'.$r["issue"].'</textarea>
                 </div>
                 <div class="row-four row record-controls">
                     <div class="button bg-orange" onclick="markAs(\'started\', '.$r["rid"].');">Mark Started</div>
                     <div class="button bg-green" onclick="markAs(\'finished\', '.$r["rid"].');">Mark Finished</div>
                     <div class="button bg-red" onclick="markAs(\'deleted\', '.$r["rid"].');">Delete Record</div>
-                    <div class="button bg-yellow disabled" onclick="resetRecord('.$r["rid"].');">Reset Record</div>
+                    <div class="button bg-yellow disabled" onclick="resetRecord('.$r["rid"].');" id="reset-form-trigger">Reset Form</div>
+                    <div class="button bg-blue" onclick="submitChanges('.$r["rid"].');">Submit Changes</div>
                     <div class="button bg-normal" onclick="collapseRecord(this);">Collapse</div>
                 </div>
             </div>
@@ -147,6 +159,8 @@
     </div>
 
     <script type="text/javascript" src="/src/scripts/checkouts.js"></script>
+    <script type="text/javascript" src="/src/scripts/confirmation.js"></script>
+    <script type="text/javascript" src="/src/scripts/modals.js"></script>
 
     <div class="loaners">
         testing loaners

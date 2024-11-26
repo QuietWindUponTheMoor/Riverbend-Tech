@@ -109,9 +109,21 @@ a {
   align-items: center;
 }
 
-/**:not(.options-list) {
-    pointer-events: none;
-}*/
+.msg-modal {
+  flex-direction: row;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid white;
+  background-color: green;
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+.msg-modal .modal-info {
+  font-weight: bold;
+}
+
 .cb-input {
   padding: 0.5rem;
   border: 2px solid lightgray;
@@ -238,7 +250,10 @@ a {
   justify-content: space-between;
   width: 100%;
 }
-.checkouts .list .record .row-one input, .checkouts .list .record .row-one label, .checkouts .list .record .row-two input, .checkouts .list .record .row-two label, .checkouts .list .record .row-three input, .checkouts .list .record .row-three label, .checkouts .list .record .row-four input, .checkouts .list .record .row-four label, .loaners .list .record .row-one input, .loaners .list .record .row-one label, .loaners .list .record .row-two input, .loaners .list .record .row-two label, .loaners .list .record .row-three input, .loaners .list .record .row-three label, .loaners .list .record .row-four input, .loaners .list .record .row-four label {
+.checkouts .list .record .row-one .recordID-input:focus, .checkouts .list .record .row-two .recordID-input:focus, .checkouts .list .record .row-three .recordID-input:focus, .checkouts .list .record .row-four .recordID-input:focus, .loaners .list .record .row-one .recordID-input:focus, .loaners .list .record .row-two .recordID-input:focus, .loaners .list .record .row-three .recordID-input:focus, .loaners .list .record .row-four .recordID-input:focus {
+  border: none;
+}
+.checkouts .list .record .row-one input, .checkouts .list .record .row-one label, .checkouts .list .record .row-one .recordID-input, .checkouts .list .record .row-two input, .checkouts .list .record .row-two label, .checkouts .list .record .row-two .recordID-input, .checkouts .list .record .row-three input, .checkouts .list .record .row-three label, .checkouts .list .record .row-three .recordID-input, .checkouts .list .record .row-four input, .checkouts .list .record .row-four label, .checkouts .list .record .row-four .recordID-input, .loaners .list .record .row-one input, .loaners .list .record .row-one label, .loaners .list .record .row-one .recordID-input, .loaners .list .record .row-two input, .loaners .list .record .row-two label, .loaners .list .record .row-two .recordID-input, .loaners .list .record .row-three input, .loaners .list .record .row-three label, .loaners .list .record .row-three .recordID-input, .loaners .list .record .row-four input, .loaners .list .record .row-four label, .loaners .list .record .row-four .recordID-input {
   width: 16%;
   font-weight: bold;
   justify-content: center;

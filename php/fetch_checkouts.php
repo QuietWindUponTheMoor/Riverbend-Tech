@@ -8,7 +8,7 @@ try {
     $Query = new Query(
         $conn,
         "sa",
-        "SELECT * FROM checkouts;",
+        "SELECT * FROM checkouts WHERE softDeleted=0;",
         null,
         null,
     );
@@ -36,6 +36,9 @@ try {
                 "grade" => $grade,
                 "issue" => $issue,
             ];
+
+            // Push to all
+            array_push($records["all"], $record);
 
             // Grade level
             switch ($grade) {
