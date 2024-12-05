@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chromebook Checkout</title>
+    <title>Device Issues</title>
     <link rel="stylesheet" href="/stylesheets/compiled/main.css">
     <script type="text/javascript" src="/src/scripts/jquery/jquery-3.7.1.js"></script>
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
 </head>
 <body id="main">
 
@@ -51,17 +52,19 @@
     ';
     ?>
 
-    <div class="checkouts">
+    <div class="data-section">
+        <h2>Device Issues</h2>
+        <a class="button bg-blue" href="/">Main Page</a>
         <div class="filters col">
             <h3>Group By</h3>
             <div class="section row">
-                <a class="filter-button button bg-orange <?php if ($_GET["grouping"] === "grade") {echo "selected";} ?>" href="/checkouts.php<?php echo '?grouping=grade&ordering='.$_GET["ordering"]; ?>">Grade</a>
-                <a class="filter-button button bg-orange <?php if ($_GET["grouping"] === "school") {echo "selected";} ?>" href="/checkouts.php<?php echo '?grouping=school&ordering='.$_GET["ordering"]; ?>">School</a>
+                <a class="filter-button button bg-orange <?php if ($_GET["grouping"] === "grade") {echo "selected";} ?>" href="/device-issues.php<?php echo '?grouping=grade&ordering='.$_GET["ordering"]; ?>">Grade</a>
+                <a class="filter-button button bg-orange <?php if ($_GET["grouping"] === "school") {echo "selected";} ?>" href="/device-issues.php<?php echo '?grouping=school&ordering='.$_GET["ordering"]; ?>">School</a>
             </div>
             <h3>Order By</h3>
             <div class="section row">
-                <a class="filter-button button bg-green <?php if ($_GET["ordering"] === "ASC") {echo "selected";} ?>" href="/checkouts.php<?php echo '?grouping='.$_GET["grouping"].'&ordering=ASC'; ?>">Ascending [a-Z] [1-9]</a>
-                <a class="filter-button button bg-green <?php if ($_GET["ordering"] === "DESC") {echo "selected";} ?>" href="/checkouts.php<?php echo '?grouping='.$_GET["grouping"].'&ordering=DESC'; ?>">Descending [Z-a] [9-1]</a>
+                <a class="filter-button button bg-green <?php if ($_GET["ordering"] === "ASC") {echo "selected";} ?>" href="/device-issues.php<?php echo '?grouping='.$_GET["grouping"].'&ordering=ASC'; ?>">Ascending [a-Z] [1-9]</a>
+                <a class="filter-button button bg-green <?php if ($_GET["ordering"] === "DESC") {echo "selected";} ?>" href="/device-issues.php<?php echo '?grouping='.$_GET["grouping"].'&ordering=DESC'; ?>">Descending [Z-a] [9-1]</a>
             </div>
         </div>
         <p class="tooltips">Click on a record to edit. Press enter to save the new value.</p>
@@ -118,10 +121,22 @@
                     foreach ($records["FHS"] as $r) {
                         displayRecord($r);
                     }
+                } else if ($ordering === "DESC") {
+                    echo '<h3>FHS</h3>';
+                    foreach ($records["FHS"] as $r) {
+                        displayRecord($r);
+                    }
+                    echo '<h3>RBMS</h3>';
+                    foreach ($records["RBMS"] as $r) {
+                        displayRecord($r);
+                    }
+                    echo '<h3>FES</h3>';
+                    foreach ($records["FES"] as $r) {
+                        displayRecord($r);
+                    }
                 }
                 break;
             default:
-                # code...
                 break;
         }
 
@@ -181,10 +196,6 @@
     <script type="text/javascript" src="/src/scripts/checkouts.js"></script>
     <script type="text/javascript" src="/src/scripts/confirmation.js"></script>
     <script type="text/javascript" src="/src/scripts/modals.js"></script>
-
-    <div class="loaners">
-        testing loaners
-    </div>
  
 </body>
 </html>

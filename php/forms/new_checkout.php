@@ -80,10 +80,11 @@ function updateCheckout($conn, $rid, $sid, $cb_num, $loaner_num, $school, $grade
     ) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
 }
 function createCheckout($conn, $sid, $cb_num, $loaner_num, $school, $grade, $issue) {
+    // Create new checkout record
     $insert = new Query(
         $conn,
         "i",
-        "INSERT INTO Checkouts (recordID, studentID, assignedCB, loanerCB, school, grade, issue) VALUES (?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE studentID=VALUES(studentID), assignedCB=VALUES(assignedCB), loanerCB=VALUES(loanerCB), school=VALUES(school), grade=VALUES(grade), issue=VALUES(issue);",
+        "INSERT INTO Checkouts (studentID, assignedCB, loanerCB, school, grade, issue) VALUES (?, ?, ?, ?, ?, ?);",
         "ssssss",
         $sid,
         $cb_num,
@@ -91,5 +92,61 @@ function createCheckout($conn, $sid, $cb_num, $loaner_num, $school, $grade, $iss
         $school,
         $grade,
         $issue
+    ) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
+
+    // Update device record
+    $building = "FHS";
+    if ($grade === "K" || $grade < 6) {
+        $building = "FES";
+    }
+    if ($grade > 5 && $grade < 9) {
+        $building = "RBMS";
+    }
+    $insert = new Query(
+        $conn,
+        "i",
+        "INSERT INTO cbinventory (asset, `serial`, PO, model, building, assignment, person)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+        ON DUPLICATE KEY UPDATE
+            assignment=VALUES(assignment),
+            person=VALUES(person),
+            asset=VALUES(asset),
+            `serial`=VALUES(`serial`),
+            PO=VALUES(PO),
+            model=VALUES(model),
+            building=VALUES(building);",
+        "sssssss",
+        strtoupper($loaner_num),
+        "UNSET",
+        "NULL",
+        "UNKNOWN",
+        $building,
+        "STUDENT",
+        $sid
+    ) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
+
+    // Update student record
+    $insert = new Query(
+        $conn,
+        "i",
+        "INSERT INTO students (`sid`, `first`, `last`, grade, homeroom, email, device_asset, loaner_asset)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ON DUPLICATE KEY UPDATE
+            loaner_asset=VALUES(loaner_asset),
+            `first`=VALUES(`first`),
+            `last`=VALUES(`last`),
+            grade=VALUES(grade),
+            homeroom=VALUES(homeroom),
+            email=VALUES(email),
+            device_asset=VALUES(device_asset);",
+        "ssssssss",
+        $sid,
+        "-",
+        "-",
+        $grade,
+        "UNKNOWN",
+        "NULL",
+        $cb_num,
+        $loaner_num
     ) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
 }

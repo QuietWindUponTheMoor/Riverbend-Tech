@@ -19,6 +19,23 @@ JOIN (
 ) c ON l.loaner = c.loanerCB
 SET l.assignment = c.studentID;
 
+DELIMITER //
+CREATE EVENT deprovision_checks
+ON SCHEDULE EVERY 30 MINUTE
+DO
+BEGIN
+    -- Insert records with 'DONOR' assignment into cbinventory_deprovisioned
+    INSERT INTO cbinventory_deprovisioned
+    SELECT * 
+    FROM cbinventory
+    WHERE assignment = 'DONOR';
+
+    -- Delete records with 'DONOR' assignment from cbinventory
+    DELETE FROM cbinventory
+    WHERE assignment = 'DONOR';
+END //
+DELIMITER ;
+
 -- Tables
 CREATE TABLE IF NOT EXISTS checkouts (
   recordID bigint(44) PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -60,4 +77,46 @@ CREATE TABLE IF NOT EXISTS loaners_del (
     loaner VARCHAR(25) PRIMARY KEY NOT NULL,
     serial VARCHAR(15) DEFAULT NULL,
     assignment VARCHAR(128) DEFAULT "SPARE" NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS cbinventory (
+    asset VARCHAR(128) PRIMARY KEY NOT NULL,
+    `serial` VARCHAR(32) NOT NULL,
+    PO VARCHAR(128) DEFAULT NULL,
+    model VARCHAR(32) NOT NULL,
+    building VARCHAR(10) DEFAULT 'FES' NOT NULL,
+    assignment VARCHAR(128) NOT NULL, -- OPTIONS: "LOANER", "STUDENT", "STAFF", "DEPROVISIONED", "DONOR", etc
+    person VARCHAR(128) DEFAULT 'NONE' NOT NULL -- OPTIONS: "<StudentID>" if assignment "STUDENT", "Mrs. <Name>" if assignment "STAFF", "NONE" if assignment is "LOANER"
+);
+
+CREATE TABLE IF NOT EXISTS cbinventory_deprovisioned (
+    asset VARCHAR(128) PRIMARY KEY NOT NULL,
+    `serial` VARCHAR(32) NOT NULL,
+    PO VARCHAR(128) DEFAULT NULL,
+    model VARCHAR(32) NOT NULL,
+    building VARCHAR(10) DEFAULT 'FES' NOT NULL,
+    assignment VARCHAR(128) NOT NULL, -- OPTIONS: "LOANER", "STUDENT", "STAFF", "DEPROVISIONED", "DONOR", etc
+    person VARCHAR(128) DEFAULT 'NONE' NOT NULL -- OPTIONS: "<StudentID>" if assignment "STUDENT", "Mrs. <Name>" if assignment "STAFF", "NONE" if assignment is "LOANER"
+);
+
+CREATE TABLE IF NOT EXISTS students (
+    `sid` VARCHAR(32) PRIMARY KEY NOT NULL, -- Student ID
+    `first` VARCHAR(128) DEFAULT NULL,
+    `last` VARCHAR(128) DEFAULT NULL,
+    grade VARCHAR(128) NOT NULL, -- Options: "K", 1, 2, 3, -- 12, etc.
+    homeroom VARCHAR(128) DEFAULT NULL, -- Examples: 2A, KB, Mr. <Last>, Mrs. <Last>, etc
+    email VARCHAR(128) DEFAULT 'UNSET' NOT NULL,
+    device_asset VARCHAR(128) DEFAULT 'UNSET' NOT NULL,
+    loaner_asset VARCHAR(128) DEFAULT NULL
+);
+
+CREATE TABLE IF NOT EXISTS dropped_students (
+    `sid` VARCHAR(32) PRIMARY KEY NOT NULL, -- Student ID
+    `first` VARCHAR(128) DEFAULT NULL,
+    `last` VARCHAR(128) DEFAULT NULL,
+    grade VARCHAR(128) NOT NULL, -- Options: "K", 1, 2, 3, -- 12, etc.
+    homeroom VARCHAR(128) DEFAULT NULL, -- Examples: 2A, KB, Mr. <Last>, Mrs. <Last>, etc
+    email VARCHAR(128) DEFAULT 'UNSET' NOT NULL,
+    device_asset VARCHAR(128) DEFAULT 'UNSET' NOT NULL,
+    loaner_asset VARCHAR(128) DEFAULT NULL
 );

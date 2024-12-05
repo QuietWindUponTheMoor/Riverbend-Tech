@@ -13,13 +13,6 @@ $data = array_filter($_POST);
  * types: "checkouts", "loaners"
  */
 
-
-// Check what type of record to delete
-$from = "";
-$to = "";
-$toCols = "";
-$selectCols = "";
-$uniqueKey = "";
 switch ($data["type"]) {
     case "checkouts":
         // Soft delete
@@ -37,23 +30,42 @@ switch ($data["type"]) {
         $insert = new Query(
             $conn,
             "i",
-            "UPDATE checkouts SET softDeleted=? WHERE recordID=?",
+            "UPDATE checkouts SET softDeleted=? WHERE recordID=?;",
             "ss",
             TRUE,
             $data["rid"]
         ) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
 
+        // Clear loaner record/set defaults for the loaner device
+        $insert = new Query(
+            $conn,
+            "i",
+            "UPDATE loaners
+            JOIN checkouts ON loaners.loaner = checkouts.loanerCB
+            SET loaners.assignment='SPARE'
+            WHERE checkouts.recordID=?;",
+            "s",
+            $data["rid"]
+        ) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
         break;
-    case "checkouts":
+    case "devices":
         // Soft delete
         $insert = new Query(
             $conn,
             "i",
-            "INSERT INTO loaners_del (loaner, `serial`, assignment)
-            SELECT loaner, `serial`, assignment FROM loaners
-            WHERE loaner=?;",
+            "INSERT INTO cbinventory_deprovisioned (asset, `serial`, PO, model, building, assignment, person)
+            SELECT asset, `serial`, PO, model, building, assignment, person FROM cbinventory
+            WHERE `serial`=?;",
             "s",
-            $data["loaner"] // This will be the loaner column value of this record since the "loaners" table does not have an auto_increment key
+            $data["rid"]
+        ) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
+
+        $insert = new Query(
+            $conn,
+            "i",
+            "DELETE FROM cbinventory WHERE `serial`=?;",
+            "s",
+            $data["rid"]
         ) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
 
         break;

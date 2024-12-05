@@ -105,10 +105,9 @@ a {
 }
 .msg-modal {
     flex-direction: row;
-    position: absolute;
-    top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
     border: 2px solid white;
     background-color: green;
     border-radius: $b-med;
@@ -196,7 +195,7 @@ a {
     }
 }
 
-.checkouts, .loaners {
+.data-section {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
