@@ -109,12 +109,7 @@ function createCheckout($conn, $sid, $cb_num, $loaner_num, $school, $grade, $iss
         VALUES (?, ?, ?, ?, ?, ?, ?)
         ON DUPLICATE KEY UPDATE
             assignment=VALUES(assignment),
-            person=VALUES(person),
-            asset=VALUES(asset),
-            `serial`=VALUES(`serial`),
-            PO=VALUES(PO),
-            model=VALUES(model),
-            building=VALUES(building);",
+            person=VALUES(person);",
         "sssssss",
         strtoupper($loaner_num),
         "UNSET",
@@ -132,13 +127,7 @@ function createCheckout($conn, $sid, $cb_num, $loaner_num, $school, $grade, $iss
         "INSERT INTO students (`sid`, `first`, `last`, grade, homeroom, email, device_asset, loaner_asset)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ON DUPLICATE KEY UPDATE
-            loaner_asset=VALUES(loaner_asset),
-            `first`=VALUES(`first`),
-            `last`=VALUES(`last`),
-            grade=VALUES(grade),
-            homeroom=VALUES(homeroom),
-            email=VALUES(email),
-            device_asset=VALUES(device_asset);",
+            loaner_asset=VALUES(loaner_asset);",
         "ssssssss",
         $sid,
         "-",

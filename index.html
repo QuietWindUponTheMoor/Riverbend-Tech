@@ -167,7 +167,11 @@
         <div class="item" data-step="5">
             <h1 id="option-prompt">Please enter your student ID.</h1>
             
-            <input class="cb-input" id="student" type="text" minlength="1" maxlength="10" placeholder="e.g. 2032034"/>
+            <div id="sid-search">
+                <input class="cb-input" id="student" type="text" minlength="1" maxlength="10" placeholder="e.g. 2032034" autocomplete="off"/>
+                <div class="searched-students" id="searched-students"><!-- Searched list appends --></div>
+            </div>
+
             <div class="option" onclick="checks($('#student').val());">
                 <p class="option-text">Next</p>
             </div>

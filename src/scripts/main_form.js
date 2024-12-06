@@ -1,6 +1,62 @@
 // Reset
 reset();
 
+let $searchedStudents = $("#searched-students");
+
+// Listeners
+$("#student").on("keyup", function () {
+    // Get the value
+    let studentID = $(this).val();
+
+    // Search for student
+    if (studentID == "") {
+        $searchedStudents.empty();
+    }
+    if (studentID !== "" || parseInt(studentID)) {
+        $.ajax({  
+            type: "POST",  
+            url: "/php/forms/search_student_by_id.php", 
+            data: {
+                sid: studentID,
+            },
+            success: function (response) {
+                if (response && response.trim() !== "") {
+                    // Clear any current records from #searched-students
+                    $searchedStudents.empty();
+
+                    // Append responses
+                    let students = JSON.parse(response);
+                    students.forEach(student => {
+                        $searchedStudents.append(
+                            `
+                            <div class="student">
+                                <p class="name">${student.last}, ${student.first}</p>
+                                <p class="sid">${student.sid}</p>
+                                <p class="email">${student.email}</p>
+                            </div>
+                            `
+                        );
+                    });
+                }
+            }
+        });
+    }
+});
+$(document).on("click",".student", function () {
+    // Get SID
+    let sid = $(this).find(".sid").text();
+    
+    // Fill value
+    $(this)
+        .parent(".searched-students")
+        .parent()
+        .children(".cb-input")
+        .val(sid);
+
+    // Reset search
+    $searchedStudents.empty();
+});
+
 // Functions
 function showEx() {
     $(".asset-tag-examples").fadeIn();

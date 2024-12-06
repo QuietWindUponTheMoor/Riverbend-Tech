@@ -132,7 +132,7 @@ a {
 .options-list {
   position: absolute;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   left: 50%;
   top: 50%;
@@ -143,7 +143,8 @@ a {
   border: 2px solid lightgray;
   border-radius: 8px;
   max-height: 90vh;
-  overflow-y: scroll;
+  width: 75%;
+  height: 75%;
 }
 .options-list #option-prompt {
   justify-content: center;
@@ -155,6 +156,41 @@ a {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+.options-list .item #sid-search {
+  position: relative;
+}
+.options-list .item #sid-search .searched-students {
+  position: absolute;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  top: calc(100% + 1px);
+  left: 50%;
+  transform: translate(-50%);
+  width: 120%;
+  max-width: 120%;
+  color: #292524;
+  gap: 1px;
+}
+.options-list .item #sid-search .searched-students .student {
+  flex-direction: column;
+  width: 100%;
+  padding: 0.25rem;
+  background-color: white;
+  border: 1px solid red;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.options-list .item #sid-search .searched-students .student:hover {
+  border: 2px solid red;
+}
+.options-list .item #sid-search .searched-students .student .name {
+  font-size: 90%;
+}
+.options-list .item #sid-search .searched-students .student .sid, .options-list .item #sid-search .searched-students .student .email {
+  font-size: 75%;
+  opacity: 0.5;
 }
 .options-list .asset-tag-examples {
   display: none;
