@@ -1,11 +1,11 @@
-
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 // -- Fonts --
-$f-main: Sans-serif, Helvetica;
+$f-main: "Open Sans", sans-serif;
 
 // -- Colors --
-$main-background: #292524;
-$main-text: #ececec;
+$main-background: #ececec;
+$main-text: #292524;
 $riverbend-red: #ca401d;
 
 // -- Borders --
@@ -26,6 +26,10 @@ html, body {
     font-family: $f-main !important;
     background-color: $main-background;
     color: $main-text;
+    font-weight: 400;
+}
+body {
+    margin: 0;
 }
 
 h1, h2, h3, h4, h5 {
@@ -54,9 +58,10 @@ a {
 }
 .bg-blue {
     background-color: blue !important;
+    color: #ececec;
 }
 .bg-green {
-    background-color: greenyellow !important;
+    background-color: lime !important;
     color: black !important;
 }
 .bg-normal {
@@ -116,15 +121,64 @@ a {
         font-weight: bold;
     }
 }
-
-
-
-
 .cb-input {
     padding: 0.5rem;
     border: $object-border;
     border-radius: $b-med;
 
+}
+
+.navbar {
+    position: fixed;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    top: 0;
+    padding-inline: 1rem;
+    background-color: white;
+    border-bottom: 1px solid rgba($main-text, 0.5);
+    gap: 2rem;
+    .section {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+        .subsection {
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            .nav-title, .nav-button, .nav-button-secondary {
+                padding: 0.5rem;
+                cursor: pointer;
+                &:hover {
+                    background-color: darken(white, 10%);
+                }
+            }
+            .nav-title {
+                font-size: 130%;
+                font-weight: 500;
+            }
+            .nav-button {
+                border: 1px solid rgb(63, 63, 218);
+            }
+            .nav-button, .nav-button-secondary {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-weight: 100;
+                font-size: 80%;
+                border-radius: 1000px;
+                padding: 5px;
+                padding-top: 4px;
+            }
+        }
+    }
+    .account-section {
+        justify-content: flex-end;
+    }
 }
 
 .options-list {
@@ -326,5 +380,59 @@ a {
                 gap: 0.5rem;
             }
         }
+    }
+}
+
+.new-device-form {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 85%;
+    background-color: white;
+    border: 1px solid rgba($main-text, 0.5);
+    padding: 1rem;
+    .submissions {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        .record-section {
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+            gap: 0.25rem;
+            .record-label {
+                opacity: 0.75;
+            }
+            .record-input, .record-label {
+                $numberOfColumns: 8;
+                width: calc(100% / $numberOfColumns);
+                padding: 0.25rem;
+                font-size: 90% !important;
+            }
+            .record-input {
+                border-radius: 2px;
+                border: 1px solid rgba(red, 0.5);
+                &:active, &:focus {
+                    outline: 1px solid red;
+                }
+                &::placeholder {
+                    font-size: 90% !important;
+                }
+            }
+            .item-number {
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+    .form-controls {
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-end;
+        padding-top: 1rem;
+        width: 100%;
+        gap: 1rem;
     }
 }

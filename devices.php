@@ -79,11 +79,6 @@
             </div>
         </div>
 
-        <!-- Add new loaner -->
-         <div class="new-device-form">
-            "New Device" form coming soon.
-         </div>
-
         <p class="tooltips">Click on a record to edit. Press enter to save the new value.</p>
 
         <?php
