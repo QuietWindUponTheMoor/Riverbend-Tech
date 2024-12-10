@@ -120,3 +120,21 @@ CREATE TABLE IF NOT EXISTS dropped_students (
     device_asset VARCHAR(128) DEFAULT 'UNSET' NOT NULL,
     loaner_asset VARCHAR(128) DEFAULT NULL
 );
+
+CREATE TABLE IF NOT EXISTS users (
+    `uid` BIGINT PRIMARY KEY NOT NULL,
+    permission_level INT(2) DEFAULT 0 NOT NULL, -- 0 = default, 1 = manager, 2 = admin
+    email VARCHAR(256) NOT NULL,
+    `image` TEXT NOT NULL,
+    `first` VARCHAR(128) NOT NULL,
+    `last` VARCHAR(128) NOT NULL,
+    full_name VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS managers (
+    `email` VARCHAR(256) PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS admins (
+    `email` VARCHAR(256) PRIMARY KEY NOT NULL
+);
