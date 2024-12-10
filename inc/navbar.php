@@ -11,8 +11,9 @@
             <a class="nav-button" href="/device-issues.php">Device Issues</a>
         </span>
         <span class="subsection">
-            <a class="nav-button-secondary" href="/new/device.php">Add Devices</a>
-            <a class="nav-button-secondary" href="/new/student.php">Add Students</a>
+            <a class="nav-button-secondary _manager" href="/new/device.php">Add Devices</a>
+            <a class="nav-button-secondary _admin" href="/new/student.php">Add Students</a>
+            <a class="nav-button-secondary" href="/new/device_issue.php">New Checkout</a>
         </span>
     </div>
 
@@ -23,15 +24,6 @@
                 <p class="name" id="user-fullname"></p>
             </span>
             <a class="nav-button-secondary" id="signout-button" onclick="signout();">Sign Out</a>
-
-            <div id="g_id_onload"
-                data-client_id="<?php echo $_ENV["gClientID"]; ?>"
-                data-context="signin"
-                data-ux_mode="popup"
-                data-login_uri="http://localhost:8081/php/account/auth.php"
-                data-callback="handleCredentialResponse">
-            </div>
-            <div class="g_id_signin" data-type="standard"></div>
         </span>
     </span>
 
@@ -39,16 +31,30 @@
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script type="text/javascript">
+// User
+let user = null;
+let rank = null;
 // Check if user is logged in
 if (isCookieValid("user")) {
-    $(".g_id_signin").hide();
+    $("#g_id_onload, .g_id_signin").remove();
 
     // Get user
-    let user = JSON.parse((getCookie("user")));
+    user = JSON.parse((getCookie("user")));
     $("#user-fullname").text(user.full_name);
     $("#user-image-container").find("img").attr("src", user.image);
+    rank = user.perm_level;
 } else {
     $(".nav-user, #signout-button").hide();
+    $(".account-section").find(".subsection").append(`
+        <div id="g_id_onload"
+            data-client_id="<?php echo $_ENV["gClientID"]; ?>"
+            data-context="signin"
+            data-ux_mode="popup"
+            data-login_uri="http://localhost:8081/php/account/auth.php"
+            data-callback="handleCredentialResponse">
+        </div>
+        <div class="g_id_signin" data-type="standard"></div>
+    `);
 }
 
 function handleCredentialResponse(response) {
@@ -90,14 +96,10 @@ function handleCredentialResponse(response) {
 
                 // Set cookie
                 document.cookie = `user=${encodedUser};expires=${date.toUTCString()};path=/`;
-
-                $(".g_id_signin").hide();
-                $("#user-fullname").text(fullName);
-                $("#user-image-container").find("img").attr("src", image);
-                $(".nav-user, #signout-button").css("display", "flex");
+                window.location.reload()
 
             } else {
-                console.error("Authentication failed.");
+                console.error("Authentication failed:", data.error);
             }
         },
         error: function(xhr, status, error) {

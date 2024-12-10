@@ -45,9 +45,9 @@
                     <option value="G9">G9</option>
                 </select>
                 <select class="record-input building">
-                    <option value="RBMS">FES</option>
+                    <option value="FES">FES</option>
                     <option value="RBMS" selected="selected">RBMS</option>
-                    <option value="RBMS">FHS</option>
+                    <option value="FHS">FHS</option>
                 </select>
                 <select class="record-input assignment">
                     <option value="STUDENT" selected="selected">Student Assigned</option>

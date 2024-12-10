@@ -1,3 +1,10 @@
+if (!user || user.perm_level === 0) {
+    window.location.assign("/");
+}
+else {
+    console.log("User has proper permissions to visit this page")
+}
+
 let numRecords = 1;
 
 const $submissions = $(".submissions");
@@ -23,9 +30,9 @@ $newBtn.on("click", function () {
                 <option value="G9">G9</option>
             </select>
             <select class="record-input building">
-                <option value="RBMS">FES</option>
+                <option value="FES">FES</option>
                 <option value="RBMS" selected="selected">RBMS</option>
-                <option value="RBMS">FHS</option>
+                <option value="FHS">FHS</option>
             </select>
             <select class="record-input assignment">
                 <option value="STUDENT" selected="selected">Student Assigned</option>
@@ -37,3 +44,61 @@ $newBtn.on("click", function () {
         </span>
     `);
 });
+
+$("#submit-records").on("click", async function () {
+    let records = [];
+
+    // Collect all records
+    for (let i = 1; i <= numRecords; i++) {
+        let $record = $(`#record-${i}`);
+
+        // Get values
+        let asset = $record.find(".asset").val();
+        let serial = $record.find(".serial").val();
+        let PO = $record.find(".PO").val();
+        let model = $record.find(".model").val();
+        let building = $record.find(".building").val();
+        let assignment = $record.find(".assignment").val();
+        let person = $record.find(".person").val();
+        let data = {
+            asset: asset,
+            serial: serial,
+            PurchaseOrder: PO,
+            model: model,
+            building: building,
+            assignment: assignment,
+            person: person
+        };
+
+        records.push(data);
+    }
+
+    // Submit devices
+    let wasErrorWhenInserting = await createDevice(records);
+    if (!wasErrorWhenInserting) {
+        modal("success", `Successfully submitted new devices! Please wait...`);
+    } else {
+        modal("error", `Unable to submit one or more devices. Please check the console for errors.`);
+    }
+});
+
+async function createDevice(records) {
+    let wasError = false;
+
+    await records.forEach(async data => {
+        $.ajax({  
+            type: "POST",  
+            url: "/php/forms/new_device.php",
+            data: data,
+            success: function (response) {
+                if (parseInt(response) === 1) {
+                    // Reload page
+                    setTimeout(() => {window.location.reload();}, 10000);
+                } else {
+                    wasError = true;
+                    console.error(response);
+                }
+            }
+        });
+    });
+}

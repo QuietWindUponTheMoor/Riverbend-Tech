@@ -24,6 +24,7 @@ $client = new Google_Client();
 $client->setClientId($_ENV["gClientID"]);
 
 // Set permission level groups
+$externalWhitelist = [];
 $managers = [];
 $admins = [];
 $Query = new Query(
@@ -50,6 +51,18 @@ if ($result->num_rows > 0) {
         array_push($admins, $r["email"]);
     }
 }
+$Query = new Query(
+    $conn,
+    "sa",
+    "SELECT * FROM external_whitelist;",
+    "",
+) or die("There was an issue selecting external_whitelist, please try again or contact an administrator.");
+$result = $Query->result;
+if ($result->num_rows > 0) {
+    while ($r = mysqli_fetch_assoc($result)) {
+        array_push($externalWhitelist, $r["email"]);
+    }
+}
 
 try {
     // Verify the token
@@ -62,6 +75,14 @@ try {
         $nameParts = explode(" ", $name);
         $first = $nameParts[0];
         $last = $nameParts[1];
+
+        // Check if is external and check whitelist
+        if (!emailIsInternal($email)) {
+            if (!in_array($email, $externalWhitelist)) {
+                echo json_encode(["success" => false, "error" => "This user is from an external domain and is not on the allow list."]);
+                return;
+            }
+        }
 
         // Check permission level
         $perm = 0;
@@ -111,4 +132,15 @@ try {
     }
 } catch (Exception $e) {
     echo json_encode(["success" => false, "error" => $e->getMessage()]);
+}
+
+function emailIsInternal($email) {
+    $domain = substr(strrchr($email, "@"), 1);
+    $internalDomain = "riverbendschools.net";
+    if ($domain === $internalDomain) {
+        // Is internal email
+        return true;
+    } else {
+        return false;
+    }
 }

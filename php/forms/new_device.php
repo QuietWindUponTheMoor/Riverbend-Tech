@@ -37,7 +37,7 @@ $insert = new Query(
     strtoupper($model),
     strtoupper($building),
     strtoupper($assignment),
-    strtoupper($person)
+    $person
 ) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
 
 echo 1;
