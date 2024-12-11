@@ -1,3 +1,6 @@
 *.csv
 deprecated/
 .env
+php/vendor/
+php/composer.json
+php/composer.lock
