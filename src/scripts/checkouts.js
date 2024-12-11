@@ -52,6 +52,9 @@ function markAs(mark, recordID) {
         case "deleted":
             deleteRecord(recordID);
             break;
+        case "loaner-returned":
+            returnedLoaner(recordID);
+            break;
         default:
             break;
     }
@@ -201,6 +204,24 @@ function finishRecord(recordID) {
                 modal("success", `Successfully marked record #${recordID} as finished!`);
 
                 $(`#record-${recordID}`).removeClass("deleted-record").removeClass("started-record").addClass("finished-record");
+            } else {
+                console.error(response);
+            }
+        }
+    });
+}
+function returnedLoaner(recordID) {
+    // Soft delete
+    $.ajax({  
+        type: "POST",  
+        url: "/php/mark_checkout_as.php",
+        data: {
+            type: "loaner-returned",
+            rid: recordID,
+        },
+        success: function (response) {
+            if (parseInt(response) === 1) {
+                modal("success", `Successfully marked loaner for record #${recordID} as returned!`);
             } else {
                 console.error(response);
             }

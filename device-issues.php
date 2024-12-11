@@ -184,6 +184,7 @@
                 <div class="row-four row record-controls">
                     <div class="button bg-orange" onclick="markAs(\'started\', '.$r["rid"].');">Mark Started</div>
                     <div class="button bg-green" onclick="markAs(\'finished\', '.$r["rid"].');">Mark Finished</div>
+                    <div class="button bg-green" onclick="markAs(\'loaner-returned\', '.$r["rid"].');">Mark Loaner Returned</div>
                     <div class="button bg-red" onclick="markAs(\'deleted\', '.$r["rid"].');">Delete Record</div>
                     <div class="button bg-yellow disabled" onclick="resetRecord('.$r["rid"].');" id="reset-form-trigger">Reset Form</div>
                     <div class="button bg-blue" onclick="submitChanges('.$r["rid"].');">Submit Changes</div>
