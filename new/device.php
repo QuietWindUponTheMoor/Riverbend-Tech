@@ -13,7 +13,7 @@
     <?php require($_SERVER["DOCUMENT_ROOT"]."/inc/navbar.php"); ?>
 
     <div class="new-device-form">
-        <h3>Submit A New Device</h3>
+        <h3>Submit New Devices</h3>
 
         <div class="submissions">
             <!-- Label section -->
