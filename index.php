@@ -13,6 +13,7 @@
     <?php require($_SERVER["DOCUMENT_ROOT"]."/inc/navbar.php"); ?>
 
     <h1 class="main-page-title">Riverbend Tech</h1>
+    <p style="color: orange; margin: 2rem;">NOTE: This project is still in development. Some features may not work or may contain bugs.</p>
     <div class="main-page-image-container"><img src="/assets/favicon.png"/></div>
  
 </body>

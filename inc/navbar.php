@@ -13,7 +13,7 @@
         <span class="subsection">
             <a class="nav-button-secondary _manager" href="/new/device.php">Add Devices</a>
             <a class="nav-button-secondary _admin" href="/new/student.php">Add Students</a>
-            <a class="nav-button-secondary" href="/new/device_issue.php">New Checkout</a>
+            <a class="nav-button-secondary" href="/new/checkout.php">New Checkout</a>
         </span>
     </div>
 
