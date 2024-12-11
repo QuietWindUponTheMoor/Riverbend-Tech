@@ -1,3 +1,7 @@
+/*
+ * recordID = serial number or "record-<ser#>"
+ */
+
 // Listeners
 let isResettingForm = false;
 $(".row-one input").on("click", function () {
@@ -43,14 +47,8 @@ function collapseRecord(triggerCollapseButton) {
 }
 function markAs(mark, recordID) {
     switch (mark) {
-        case "started":
-            startRecord(recordID);
-            break;
-        case "finished":
-            finishRecord(recordID);
-            break;
-        case "deleted":
-            deleteRecord(recordID);
+        case "deprovisioned":
+            deprovisionRecord(recordID);
             break;
         default:
             break;
@@ -64,29 +62,29 @@ function resetFormButtonVisibility(recordElementThis) {
         : $(recordElementThis).closest(".row-three").parent();
     recordElement.find(".record-controls").find("#reset-form-trigger").removeClass("disabled");
 }
-function getRecordDataByID(recordID) {
-    return Object.values(records.all).find(obj => obj.rid === recordID);
+function getRecordDataBySerial(recordID) {
+    return Object.values(records.all).find(obj => obj.serial === recordID);
 }
 function resetRecord(recordID) {
     // Get record elements
     let $recordElement = $(`#record-${recordID}`);
-    let $rid = $recordElement.find("#rid");
-    let $sid = $recordElement.find("#sid");
-    let $assignedCB = $recordElement.find("#assignedCB");
-    let $loanerCB = $recordElement.find("#loanerCB");
-    let $school = $recordElement.find("#school");
-    let $grade = $recordElement.find("#grade");
-    let $issue = $recordElement.find("#issue");
+    let $serial = $recordElement.find("#serial");
+    let $asset = $recordElement.find("#asset");
+    let $PO = $recordElement.find("#PO");
+    let $model = $recordElement.find("#model");
+    let $building = $recordElement.find("#building");
+    let $assignment = $recordElement.find("#assignment");
+    let $person = $recordElement.find("#person");
 
     // Reset values
-    let recordData = getRecordDataByID(recordID);
-    let rid = $rid.val(recordData.rid);
-    let sid = $sid.val(recordData.sid);
-    let assignedCB = $assignedCB.val(recordData.assignedCB);
-    let loanerCB = $loanerCB.val(recordData.loanerCB);
-    let school = $school.val(recordData.school);
-    let grade = $grade.val(recordData.grade);
-    let issue = $issue.val(recordData.issue);
+    let recordData = getRecordDataBySerial(recordID);
+    let serial = $serial.val(recordData.serial);
+    let asset = $asset.val(recordData.asset);
+    let PO = $PO.val(recordData.PO);
+    let model = $model.val(recordData.model);
+    let building = $building.val(recordData.building);
+    let assignment = $assignment.val(recordData.assignment);
+    let person = $person.val(recordData.person);
 
     // Re-disable reset button
     $recordElement.find(".record-controls").find("#reset-form-trigger").addClass("disabled");
@@ -97,22 +95,25 @@ function submitChanges(recordID) {
 function submitChangesTrigger(recordID) {
     // Get record elements
     let $recordElement = $(`#record-${recordID}`);
-    let $rid = $recordElement.find("#rid");
-    let $sid = $recordElement.find("#sid");
-    let $assignedCB = $recordElement.find("#assignedCB");
-    let $loanerCB = $recordElement.find("#loanerCB");
-    let $school = $recordElement.find("#school");
-    let $grade = $recordElement.find("#grade");
-    let $issue = $recordElement.find("#issue");
+    let $serial = $recordElement.find("#serial");
+    let $asset = $recordElement.find("#asset");
+    let $PO = $recordElement.find("#PO");
+    let $model = $recordElement.find("#model");
+    let $building = $recordElement.find("#building");
+    let $assignment = $recordElement.find("#assignment");
+    let $person = $recordElement.find("#person");
 
-    // Get values
-    let rid = $rid.text();
-    let sid = $sid.val();
-    let assignedCB = $assignedCB.val();
-    let loanerCB = $loanerCB.val();
-    let school = $school.val();
-    let grade = $grade.val();
-    let issue = $issue.val();
+    // Reset values
+    let serial = $serial.val();
+    let asset = $asset.val();
+    let PO = $PO.val();
+    if (PO == "") {
+        PO = "NULL";
+    }
+    let model = $model.val();
+    let building = $building.val();
+    let assignment = $assignment.val();
+    let person = $person.val();
 
     // Confirm
     confirmUpdate = confirmation("Are you sure you want to make changes to this record?");
@@ -121,29 +122,26 @@ function submitChangesTrigger(recordID) {
     // Send to database for changes
     $.ajax({  
         type: "POST",  
-        url: "/php/forms/new_checkout.php", 
+        url: "/php/forms/new_device.php",
         data: {
-            rid: rid,
-            sid: sid,
-            assignedCB: assignedCB,
-            loanerCB: loanerCB,
-            school: school,
-            grade: grade,
-            issue: issue,
-            started: null,
-            finished: null,
-            softDeleted: null,
+            asset: asset,
+            serial: serial,
+            PurchaseOrder: PO,
+            model: model,
+            building: building,
+            assignment: assignment,
+            person: person,
         },
         success: function (response) {
             if (parseInt(response) === 1) {
-                modal("success", `Successfully updated record #${rid}!`);
+                modal("success", `Successfully updated device ${serial}:${asset}!`);
             } else {
                 console.error(response);
             }
         }
     });
 }
-function deleteRecord(recordID) {
+function deprovisionRecord(recordID) {
     // Confirm
     confirmUpdate = confirmation("Are you sure you want to delete this record? This can only be undone by someone with access to the database.");
     if (confirmUpdate === false) return;
@@ -153,54 +151,14 @@ function deleteRecord(recordID) {
         type: "POST",  
         url: "/php/soft_delete.php",
         data: {
-            type: "checkouts", // Type can either be "checkouts" or "loaners" for soft deletion
+            type: "devices", // Type can either be "checkouts" or "device" for soft deletion
             rid: recordID,
         },
         success: function (response) {
             if (parseInt(response) === 1) {
-                modal("success", `Successfully deleted record #${recordID}!`);
+                modal("success", `Successfully deprovisioned device ${recordID}!`);
 
                 $(`#record-${recordID}`).removeClass("started-record").removeClass("finished-record").addClass("deleted-record");
-            } else {
-                console.error(response);
-            }
-        }
-    });
-}
-function startRecord(recordID) {
-    // Soft delete
-    $.ajax({  
-        type: "POST",  
-        url: "/php/mark_checkout_as.php",
-        data: {
-            type: "started",
-            rid: recordID,
-        },
-        success: function (response) {
-            if (parseInt(response) === 1) {
-                modal("success", `Successfully marked record #${recordID} as started!`);
-
-                $(`#record-${recordID}`).removeClass("deleted-record").removeClass("finished-record").addClass("started-record");
-            } else {
-                console.error(response);
-            }
-        }
-    });
-}
-function finishRecord(recordID) {
-    // Soft delete
-    $.ajax({  
-        type: "POST",  
-        url: "/php/mark_checkout_as.php",
-        data: {
-            type: "finished",
-            rid: recordID,
-        },
-        success: function (response) {
-            if (parseInt(response) === 1) {
-                modal("success", `Successfully marked record #${recordID} as finished!`);
-
-                $(`#record-${recordID}`).removeClass("deleted-record").removeClass("started-record").addClass("finished-record");
             } else {
                 console.error(response);
             }

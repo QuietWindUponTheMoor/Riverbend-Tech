@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 * {
   box-sizing: border-box;
 }
@@ -8,9 +9,14 @@
 }
 
 html, body {
-  font-family: Sans-serif, Helvetica !important;
-  background-color: #292524;
-  color: #ececec;
+  font-family: "Open Sans", sans-serif !important;
+  background-color: #ececec;
+  color: #292524;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5 {
@@ -47,10 +53,11 @@ a {
 
 .bg-blue {
   background-color: blue !important;
+  color: #ececec;
 }
 
 .bg-green {
-  background-color: greenyellow !important;
+  background-color: lime !important;
   color: black !important;
 }
 
@@ -88,7 +95,7 @@ a {
 }
 
 .disabled, .disabled:hover {
-  opacity: 0.2;
+  opacity: 0.6;
   cursor: default !important;
 }
 
@@ -97,7 +104,7 @@ a {
 }
 
 .tooltips {
-  color: orange !important;
+  color: rgb(136, 134, 36) !important;
 }
 
 .grouped-by {
@@ -111,10 +118,9 @@ a {
 
 .msg-modal {
   flex-direction: row;
-  position: absolute;
-  top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
   border: 2px solid white;
   background-color: green;
   border-radius: 8px;
@@ -126,25 +132,135 @@ a {
 
 .cb-input {
   padding: 0.5rem;
-  border: 2px solid lightgray;
+  border: 2px solid #0e0c0c;
   border-radius: 8px;
 }
 
+.main-page-image-container {
+  width: 25%;
+}
+.main-page-image-container img {
+  max-width: 100%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 35%;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 35%;
+  box-shadow: 10px 0px 15px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar {
+  position: fixed;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  top: 0;
+  padding-inline: 1rem;
+  background-color: white;
+  border-bottom: 1px solid rgba(41, 37, 36, 0.5);
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.navbar .section {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.navbar .section .subsection {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.navbar .section .subsection .nav-title, .navbar .section .subsection .nav-button, .navbar .section .subsection .nav-button-secondary {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.navbar .section .subsection .nav-title:hover, .navbar .section .subsection .nav-button:hover, .navbar .section .subsection .nav-button-secondary:hover {
+  background-color: #e6e6e6;
+}
+.navbar .section .subsection .nav-title {
+  font-size: 130%;
+  font-weight: 500;
+}
+.navbar .section .subsection .nav-button {
+  border: 1px solid rgb(63, 63, 218);
+}
+.navbar .section .subsection .nav-button, .navbar .section .subsection .nav-button-secondary {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 100;
+  font-size: 80%;
+  border-radius: 1000px;
+  padding: 5px;
+  padding-top: 4px;
+}
+.navbar .section .subsection .nav-user {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 0.5rem;
+}
+.navbar .section .subsection .nav-user .image-container {
+  width: 23px;
+  aspect-ratio: 1/1;
+  height: 23px;
+}
+.navbar .section .subsection .nav-user .image-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 1000px;
+  background-color: black;
+}
+.navbar .section .subsection .nav-user .name {
+  font-weight: 500 !important;
+  font-size: 80%;
+}
+.navbar .account-section {
+  justify-content: flex-end;
+}
+
+@media (max-width: 1000px) {
+  .navbar {
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+@media (max-width: 1000px) {
+  .navbar {
+    justify-content: center;
+    align-items: center;
+  }
+  .navbar .section, .navbar .account-section {
+    justify-content: center;
+    align-items: center;
+  }
+  .navbar .section .subsection, .navbar .account-section .subsection {
+    justify-content: center;
+    align-items: center;
+  }
+}
 .options-list {
   position: absolute;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   padding: 2rem;
   gap: 1rem;
-  background-color: black;
-  border: 2px solid lightgray;
+  background-color: white;
+  border: 2px solid #0e0c0c;
   border-radius: 8px;
   max-height: 90vh;
-  overflow-y: scroll;
+  width: 75%;
+  height: 75%;
 }
 .options-list #option-prompt {
   justify-content: center;
@@ -156,6 +272,41 @@ a {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+.options-list .item #sid-search {
+  position: relative;
+}
+.options-list .item #sid-search .searched-students {
+  position: absolute;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  top: calc(100% + 1px);
+  left: 50%;
+  transform: translate(-50%);
+  width: 120%;
+  max-width: 120%;
+  color: #292524;
+  gap: 1px;
+}
+.options-list .item #sid-search .searched-students .student {
+  flex-direction: column;
+  width: 100%;
+  padding: 0.25rem;
+  background-color: white;
+  border: 1px solid red;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.options-list .item #sid-search .searched-students .student:hover {
+  border: 2px solid red;
+}
+.options-list .item #sid-search .searched-students .student .name {
+  font-size: 90%;
+}
+.options-list .item #sid-search .searched-students .student .sid, .options-list .item #sid-search .searched-students .student .email {
+  font-size: 75%;
+  opacity: 0.5;
 }
 .options-list .asset-tag-examples {
   display: none;
@@ -170,7 +321,7 @@ a {
 }
 .options-list .asset-tag-examples .img-container img {
   width: 100%;
-  border: 2px solid lightgray;
+  border: 2px solid #0e0c0c;
   border-radius: 8px;
 }
 .options-list .progressions {
@@ -178,111 +329,162 @@ a {
   justify-content: space-between;
   width: 100%;
 }
-.options-list .progressions .option {
-  background-color: blue;
-}
-.options-list .option {
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 2px solid lightgray;
-  background-color: #ca401d;
-  cursor: pointer;
-}
-.options-list .option:hover {
-  padding: calc(0.5rem + 1px);
-  border: 1px solid #a0a0a0;
-}
 .options-list .pages {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
 
-.checkouts, .loaners {
+.data-section {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   width: 90%;
   padding: 2rem;
-  background-color: black;
-  border: 2px solid lightgray;
+  background-color: white;
+  border: 2px solid #0e0c0c;
   border-radius: 8px;
   gap: 1rem;
 }
-.checkouts h1, .checkouts h2, .checkouts h3, .loaners h1, .loaners h2, .loaners h3 {
+.data-section h1, .data-section h2, .data-section h3 {
   margin: 0;
 }
-.checkouts .filters, .loaners .filters {
-  border: 2px solid lightgray;
+.data-section .filters {
+  border: 2px solid #0e0c0c;
   border-radius: 8px;
   width: 100%;
   padding: 1rem;
   gap: 0.75rem;
 }
-.checkouts .filters .section, .loaners .filters .section {
+.data-section .filters .section {
   gap: 1rem;
 }
-.checkouts .filters .section .filter-button, .loaners .filters .section .filter-button {
+.data-section .filters .section .filter-button {
   justify-content: center;
   align-items: center;
 }
-.checkouts .list, .loaners .list {
+.data-section .list {
   width: 100%;
   padding-bottom: 1rem;
   border-bottom: 1px solid lightgray;
   gap: 0.5rem;
 }
-.checkouts .list:last-child, .loaners .list:last-child {
+.data-section .list:last-child {
   padding-bottom: 0;
   border-bottom: none;
 }
-.checkouts .list .record, .loaners .list .record {
+.data-section .list .deleted-record {
+  border: 2px solid #ca401d !important;
+}
+.data-section .list .finished-record {
+  border: 2px solid green !important;
+}
+.data-section .list .started-record {
+  border: 2px solid yellow !important;
+}
+.data-section .list .record {
   width: 100%;
   gap: 0.5rem;
   padding: 0.5rem;
-  background-color: #292524;
-  border: 2px solid #ececec;
+  background-color: white;
+  border: 2px solid #292524;
 }
-.checkouts .list .record .row-two, .checkouts .list .record .row-three, .checkouts .list .record .row-four, .loaners .list .record .row-two, .loaners .list .record .row-three, .loaners .list .record .row-four {
+.data-section .list .record .row-two, .data-section .list .record .row-three, .data-section .list .record .row-four {
   display: none;
 }
-.checkouts .list .record .row-one, .checkouts .list .record .row-two, .checkouts .list .record .row-three, .checkouts .list .record .row-four, .loaners .list .record .row-one, .loaners .list .record .row-two, .loaners .list .record .row-three, .loaners .list .record .row-four {
+.data-section .list .record .row-one, .data-section .list .record .row-two, .data-section .list .record .row-three, .data-section .list .record .row-four {
   justify-content: space-between;
   width: 100%;
 }
-.checkouts .list .record .row-one .recordID-input:focus, .checkouts .list .record .row-two .recordID-input:focus, .checkouts .list .record .row-three .recordID-input:focus, .checkouts .list .record .row-four .recordID-input:focus, .loaners .list .record .row-one .recordID-input:focus, .loaners .list .record .row-two .recordID-input:focus, .loaners .list .record .row-three .recordID-input:focus, .loaners .list .record .row-four .recordID-input:focus {
+.data-section .list .record .row-one .recordID-input:focus, .data-section .list .record .row-two .recordID-input:focus, .data-section .list .record .row-three .recordID-input:focus, .data-section .list .record .row-four .recordID-input:focus {
   border: none;
 }
-.checkouts .list .record .row-one input, .checkouts .list .record .row-one label, .checkouts .list .record .row-one .recordID-input, .checkouts .list .record .row-two input, .checkouts .list .record .row-two label, .checkouts .list .record .row-two .recordID-input, .checkouts .list .record .row-three input, .checkouts .list .record .row-three label, .checkouts .list .record .row-three .recordID-input, .checkouts .list .record .row-four input, .checkouts .list .record .row-four label, .checkouts .list .record .row-four .recordID-input, .loaners .list .record .row-one input, .loaners .list .record .row-one label, .loaners .list .record .row-one .recordID-input, .loaners .list .record .row-two input, .loaners .list .record .row-two label, .loaners .list .record .row-two .recordID-input, .loaners .list .record .row-three input, .loaners .list .record .row-three label, .loaners .list .record .row-three .recordID-input, .loaners .list .record .row-four input, .loaners .list .record .row-four label, .loaners .list .record .row-four .recordID-input {
+.data-section .list .record .row-one input, .data-section .list .record .row-one label, .data-section .list .record .row-one .recordID-input, .data-section .list .record .row-two input, .data-section .list .record .row-two label, .data-section .list .record .row-two .recordID-input, .data-section .list .record .row-three input, .data-section .list .record .row-three label, .data-section .list .record .row-three .recordID-input, .data-section .list .record .row-four input, .data-section .list .record .row-four label, .data-section .list .record .row-four .recordID-input {
   width: 16%;
   font-weight: bold;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
-.checkouts .list .record .row-one label, .checkouts .list .record .row-two label, .checkouts .list .record .row-three label, .checkouts .list .record .row-four label, .loaners .list .record .row-one label, .loaners .list .record .row-two label, .loaners .list .record .row-three label, .loaners .list .record .row-four label {
+.data-section .list .record .row-one label, .data-section .list .record .row-two label, .data-section .list .record .row-three label, .data-section .list .record .row-four label {
   font-weight: normal !important;
   font-size: 70%;
   opacity: 0.8;
-  color: orange;
+  color: rgb(136, 134, 36);
 }
-.checkouts .list .record .row-one textarea, .checkouts .list .record .row-one .issue-textbox, .checkouts .list .record .row-two textarea, .checkouts .list .record .row-two .issue-textbox, .checkouts .list .record .row-three textarea, .checkouts .list .record .row-three .issue-textbox, .checkouts .list .record .row-four textarea, .checkouts .list .record .row-four .issue-textbox, .loaners .list .record .row-one textarea, .loaners .list .record .row-one .issue-textbox, .loaners .list .record .row-two textarea, .loaners .list .record .row-two .issue-textbox, .loaners .list .record .row-three textarea, .loaners .list .record .row-three .issue-textbox, .loaners .list .record .row-four textarea, .loaners .list .record .row-four .issue-textbox {
+.data-section .list .record .row-one textarea, .data-section .list .record .row-one .issue-textbox, .data-section .list .record .row-two textarea, .data-section .list .record .row-two .issue-textbox, .data-section .list .record .row-three textarea, .data-section .list .record .row-three .issue-textbox, .data-section .list .record .row-four textarea, .data-section .list .record .row-four .issue-textbox {
   width: 100%;
   height: 3rem;
   resize: vertical;
-  font-family: Sans-serif, Helvetica;
+  font-family: "Open Sans", sans-serif;
 }
-.checkouts .list .record .row-one input, .checkouts .list .record .row-one .issue-textbox, .checkouts .list .record .row-two input, .checkouts .list .record .row-two .issue-textbox, .checkouts .list .record .row-three input, .checkouts .list .record .row-three .issue-textbox, .checkouts .list .record .row-four input, .checkouts .list .record .row-four .issue-textbox, .loaners .list .record .row-one input, .loaners .list .record .row-one .issue-textbox, .loaners .list .record .row-two input, .loaners .list .record .row-two .issue-textbox, .loaners .list .record .row-three input, .loaners .list .record .row-three .issue-textbox, .loaners .list .record .row-four input, .loaners .list .record .row-four .issue-textbox {
+.data-section .list .record .row-one input, .data-section .list .record .row-one .issue-textbox, .data-section .list .record .row-two input, .data-section .list .record .row-two .issue-textbox, .data-section .list .record .row-three input, .data-section .list .record .row-three .issue-textbox, .data-section .list .record .row-four input, .data-section .list .record .row-four .issue-textbox {
   padding: 0.5rem;
-  color: white;
+  color: #292524;
   background-color: transparent;
   border: none;
   outline: none;
 }
-.checkouts .list .record .row-one input:focus, .checkouts .list .record .row-one .issue-textbox:focus, .checkouts .list .record .row-two input:focus, .checkouts .list .record .row-two .issue-textbox:focus, .checkouts .list .record .row-three input:focus, .checkouts .list .record .row-three .issue-textbox:focus, .checkouts .list .record .row-four input:focus, .checkouts .list .record .row-four .issue-textbox:focus, .loaners .list .record .row-one input:focus, .loaners .list .record .row-one .issue-textbox:focus, .loaners .list .record .row-two input:focus, .loaners .list .record .row-two .issue-textbox:focus, .loaners .list .record .row-three input:focus, .loaners .list .record .row-three .issue-textbox:focus, .loaners .list .record .row-four input:focus, .loaners .list .record .row-four .issue-textbox:focus {
-  border: 2px solid white;
+.data-section .list .record .row-one input:focus, .data-section .list .record .row-one .issue-textbox:focus, .data-section .list .record .row-two input:focus, .data-section .list .record .row-two .issue-textbox:focus, .data-section .list .record .row-three input:focus, .data-section .list .record .row-three .issue-textbox:focus, .data-section .list .record .row-four input:focus, .data-section .list .record .row-four .issue-textbox:focus {
+  border: 2px solid #292524;
 }
-.checkouts .list .record .record-controls, .loaners .list .record .record-controls {
+.data-section .list .record .record-controls {
   justify-content: flex-start;
   gap: 0.5rem;
+}
+
+.new-device-form {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 85%;
+  background-color: white;
+  border: 1px solid rgba(41, 37, 36, 0.5);
+  padding: 1rem;
+}
+.new-device-form .submissions {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+.new-device-form .submissions .record-section {
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 0.25rem;
+}
+.new-device-form .submissions .record-section .record-label {
+  opacity: 0.75;
+}
+.new-device-form .submissions .record-section .record-input, .new-device-form .submissions .record-section .record-label {
+  width: 12.5%;
+  padding: 0.25rem;
+  font-size: 90% !important;
+}
+.new-device-form .submissions .record-section .record-input {
+  border-radius: 2px;
+  border: 1px solid rgba(255, 0, 0, 0.5);
+}
+.new-device-form .submissions .record-section .record-input:active, .new-device-form .submissions .record-section .record-input:focus {
+  outline: 1px solid red;
+}
+.new-device-form .submissions .record-section .record-input::-moz-placeholder {
+  font-size: 90% !important;
+}
+.new-device-form .submissions .record-section .record-input::placeholder {
+  font-size: 90% !important;
+}
+.new-device-form .submissions .record-section .item-number {
+  justify-content: center;
+  align-items: center;
+}
+.new-device-form .form-controls {
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-top: 1rem;
+  width: 100%;
+  gap: 1rem;
 }/*# sourceMappingURL=main.css.map */

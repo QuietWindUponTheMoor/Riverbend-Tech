@@ -3,13 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chromebook Checkout</title>
+    <title>Device Issues</title>
     <link rel="stylesheet" href="/stylesheets/compiled/main.css">
     <script type="text/javascript" src="/src/scripts/jquery/jquery-3.7.1.js"></script>
+    <script type="text/javascript" src="/src/scripts/navbar.js" defer></script>
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
 </head>
 <body id="main">
+ <?php require($_SERVER["DOCUMENT_ROOT"]."/inc/navbar.php"); ?>
 
     <?php
+    $ordering = "ASC";
+    $grouping = "grade";
+    // GET variables
+    if (!isset($_GET["grouping"])) {
+        $_GET["grouping"] = "grade";
+        $grouping = "grade";
+    } else {
+        $grouping = $_GET["grouping"];
+    }
+    if (!isset($_GET["ordering"])) {
+        $_GET["ordering"] = "ASC";
+        $ordering = "ASC";
+    } else {
+        $ordering = $_GET["ordering"];
+    }
+
     // Init all records
     $records = [
         "all" => [],
@@ -33,30 +52,23 @@
 
     </script>
     ';
-
-    // GET variables
-    if (!isset($_GET["grouping"])) {
-        $_GET["grouping"] = "grade";
-    }
-    if (!isset($_GET["ordering"])) {
-        $_GET["ordering"] = "ASC";
-    }
     ?>
 
-    <div class="checkouts">
+    <div class="data-section">
+        <h2>Device Issues</h2>
+        <a class="button bg-blue" href="/">Main Page</a>
         <div class="filters col">
             <h3>Group By</h3>
             <div class="section row">
-                <a class="filter-button button bg-orange <?php if ($_GET["grouping"] === "grade") {echo "selected";} ?>" href="/checkouts.php<?php echo '?grouping=grade&ordering='.$_GET["ordering"]; ?>">Grade</a>
-                <a class="filter-button button bg-orange <?php if ($_GET["grouping"] === "school") {echo "selected";} ?>" href="/checkouts.php<?php echo '?grouping=school&ordering='.$_GET["ordering"]; ?>">School</a>
+                <a class="filter-button button bg-orange <?php if ($_GET["grouping"] === "grade") {echo "selected";} ?>" href="/device-issues.php<?php echo '?grouping=grade&ordering='.$_GET["ordering"]; ?>">Grade</a>
+                <a class="filter-button button bg-orange <?php if ($_GET["grouping"] === "school") {echo "selected";} ?>" href="/device-issues.php<?php echo '?grouping=school&ordering='.$_GET["ordering"]; ?>">School</a>
             </div>
             <h3>Order By</h3>
             <div class="section row">
-                <a class="filter-button button bg-green <?php if ($_GET["ordering"] === "ASC") {echo "selected";} ?>" href="/checkouts.php<?php echo '?grouping='.$_GET["grouping"].'&ordering=ASC'; ?>">Ascending [a-Z] [1-9]</a>
-                <a class="filter-button button bg-green <?php if ($_GET["ordering"] === "DESC") {echo "selected";} ?>" href="/checkouts.php<?php echo '?grouping='.$_GET["grouping"].'&ordering=DESC'; ?>">Descending [Z-a] [9-1]</a>
+                <a class="filter-button button bg-green <?php if ($_GET["ordering"] === "ASC") {echo "selected";} ?>" href="/device-issues.php<?php echo '?grouping='.$_GET["grouping"].'&ordering=ASC'; ?>">Ascending [a-Z] [1-9]</a>
+                <a class="filter-button button bg-green <?php if ($_GET["ordering"] === "DESC") {echo "selected";} ?>" href="/device-issues.php<?php echo '?grouping='.$_GET["grouping"].'&ordering=DESC'; ?>">Descending [Z-a] [9-1]</a>
             </div>
         </div>
-        <h1 class="grouped-by">Grouped By: Grade Level, ASC</h1>
         <p class="tooltips">Click on a record to edit. Press enter to save the new value.</p>
 
         <?php
@@ -111,10 +123,22 @@
                     foreach ($records["FHS"] as $r) {
                         displayRecord($r);
                     }
+                } else if ($ordering === "DESC") {
+                    echo '<h3>FHS</h3>';
+                    foreach ($records["FHS"] as $r) {
+                        displayRecord($r);
+                    }
+                    echo '<h3>RBMS</h3>';
+                    foreach ($records["RBMS"] as $r) {
+                        displayRecord($r);
+                    }
+                    echo '<h3>FES</h3>';
+                    foreach ($records["FES"] as $r) {
+                        displayRecord($r);
+                    }
                 }
                 break;
             default:
-                # code...
                 break;
         }
 
@@ -122,9 +146,22 @@
 
         // Helper functions
         function displayRecord($r) {
+            $color = "";
+            if ($r["softDeleted"] == 1) {
+                $color = "deleted-record";
+            }
+            
+            if ($r["started"] == 1) {
+                $color = "started-record";
+            }
+            
+            if ($r["finished"] == 1) {
+                $color = "finished-record";
+            }
+
             echo
             '
-            <div class="record col" id="record-'.$r["rid"].'">
+            <div class="record '.$color.' col" id="record-'.$r["rid"].'">
                 <div class="row-one row">
                     <p class="recordID-input" id="rid">'.$r["rid"].'</p>
                     <input id="sid" type="text" value="'.$r["sid"].'" placeholder="Student ID"/>
@@ -161,10 +198,6 @@
     <script type="text/javascript" src="/src/scripts/checkouts.js"></script>
     <script type="text/javascript" src="/src/scripts/confirmation.js"></script>
     <script type="text/javascript" src="/src/scripts/modals.js"></script>
-
-    <div class="loaners">
-        testing loaners
-    </div>
  
 </body>
 </html>
