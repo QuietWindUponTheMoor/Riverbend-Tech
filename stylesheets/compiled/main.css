@@ -636,4 +636,57 @@ a {
   .email-groups-form .form .available-students, .email-groups-form .form .new-group {
     width: 100%;
   }
+}
+.import-export-form {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 85%;
+  background-color: white;
+  border: 1px solid rgba(41, 37, 36, 0.5);
+  padding: 1rem;
+  gap: 1rem;
+}
+.import-export-form .progress-container {
+  display: none;
+  width: 100%;
+}
+.import-export-form .progress-container progress {
+  width: 100%;
+  border: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  height: 10px;
+}
+.import-export-form .progress-container progress::-webkit-progress-bar {
+  background-color: rgb(224, 223, 223);
+  border-radius: 3px;
+  height: 10px;
+}
+.import-export-form .progress-container progress::-webkit-progress-value {
+  background: linear-gradient(rgb(31, 255, 2), rgb(23, 148, 7)), linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+  background-blend-mode: multiply;
+  border-radius: 3px;
+  height: 10px;
+}
+.import-export-form .progress-container label {
+  font-size: 70%;
+  font-weight: 100;
+}
+.import-export-form .progress-container #progress-percent {
+  font-size: 75%;
+  font-weight: 600;
+}
+.import-export-form .progress-container #upload-result {
+  display: none;
+  font-weight: 600;
+}
+.import-export-form .progress-container .upload-success {
+  display: flex !important;
+  color: rgb(23, 148, 7);
+}
+.import-export-form .progress-container .upload-error {
+  display: flex !important;
+  color: rgb(255, 19, 2);
 }/*# sourceMappingURL=main.css.map */

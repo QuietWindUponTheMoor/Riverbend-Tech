@@ -630,3 +630,55 @@ a {
         }
     }
 }
+
+.import-export-form {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 85%;
+    background-color: white;
+    border: 1px solid rgba($main-text, 0.5);
+    padding: 1rem;
+    gap: 1rem;
+    .progress-container {
+        display: none;
+        width: 100%;
+        progress {
+            width: 100%;
+            border: none;
+            appearance: none;
+            height: 10px;
+            &::-webkit-progress-bar {
+                background-color: rgb(224, 223, 223);
+                border-radius: 3px;
+                height: 10px;
+            }
+            &::-webkit-progress-value {
+                background: linear-gradient(rgb(31, 255, 2), rgb(23, 148, 7)), linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+                background-blend-mode: multiply;
+                border-radius: 3px;
+                height: 10px;
+            }
+        }
+        label {
+            font-size: 70%;
+            font-weight: 100;
+        }
+        #progress-percent {
+            font-size: 75%;
+            font-weight: 600;
+        }
+        #upload-result {
+            display: none;
+            font-weight: 600;
+        }
+        .upload-success {
+            display: flex !important;
+            color: rgb(23, 148, 7);
+        }
+        .upload-error {
+            display: flex !important;
+            color: rgb(255, 19, 2);
+        }
+    }
+}

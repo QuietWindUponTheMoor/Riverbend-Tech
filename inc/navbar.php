@@ -26,6 +26,10 @@
                     <p class="section-title">Export</p>
                     <a class="section-link _manager" href="">Students</a>
                 </div>
+                <div class="dropdown-section">
+                    <p class="section-title">Import</p>
+                    <a class="section-link _manager" href="/import/students.php">Students</a>
+                </div>
             </div>
         </span>
         <span class="subsection">
