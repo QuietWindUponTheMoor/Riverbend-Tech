@@ -13,23 +13,19 @@
     <?php require($_SERVER["DOCUMENT_ROOT"]."/inc/navbar.php"); ?>
 
     <div class="new-device-form">
-        <h3>Submit New Checkout or Device Issue</h3>
+        <h3>Submit New Administrators</h3>
 
         <div class="submissions">
             <!-- Label section -->
             <span class="record-section" id="label-section">
                 <p class="record-label item-number">Record #</p>
-                <p class="record-label sid">Student ID</p>
-                <p class="record-label asset">Loaner Asset #</p>
-                <p class="record-label issue">Brief Issue</p>
+                <p class="record-label email">Email Address</p>
             </span>
 
             <!-- Default record -->
             <span class="record-section" id="record-1">
                 <p class="record-label item-number">1</p>
-                <input class="record-input sid" placeholder="2030***"/>
-                <input class="record-input asset" placeholder="01HP21"/>
-                <input class="record-input issue" placeholder="Display is cracked"/>
+                <input class="record-input email" placeholder="johndoe@riverbendschools.net"/>
             </span>
         </div>
 
@@ -43,7 +39,7 @@
 
     <script type="text/javascript" src="/src/scripts/confirmation.js"></script>
     <script type="text/javascript" src="/src/scripts/modals.js"></script>
-    <script type="text/javascript" src="/src/scripts/forms/new_checkout.js"></script>
+    <script type="text/javascript" src="/src/scripts/forms/new_admin.js"></script>
  
 </body>
 </html>

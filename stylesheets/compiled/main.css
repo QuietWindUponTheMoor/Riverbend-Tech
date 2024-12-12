@@ -220,6 +220,57 @@ a {
   font-weight: 500 !important;
   font-size: 80%;
 }
+.navbar .section #admin-dropdown-trigger {
+  min-width: 100px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.navbar .section #admin-dropdown-trigger .nav-button {
+  border-radius: 0;
+  width: 100%;
+}
+.navbar .section #admin-dropdown-trigger:hover #admin-dropdown {
+  display: flex;
+}
+.navbar .section #admin-dropdown-trigger #admin-dropdown {
+  position: absolute;
+  flex-direction: row;
+  display: none;
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translate(-50%);
+  min-width: 60vw;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid red;
+  gap: 1rem;
+  flex-wrap: wrap;
+  z-index: 99 !important;
+}
+.navbar .section #admin-dropdown-trigger #admin-dropdown .dropdown-section {
+  flex-direction: column;
+  min-width: 19%;
+  flex-wrap: wrap;
+}
+.navbar .section #admin-dropdown-trigger #admin-dropdown .dropdown-section .section-title {
+  font-size: 110%;
+  font-weight: 600;
+}
+.navbar .section #admin-dropdown-trigger #admin-dropdown .dropdown-section .section-link {
+  font-weight: 100;
+  font-size: 80%;
+  padding-inline: 3px;
+  padding-left: 8px;
+  transition: font-size, font-weight 300ms;
+}
+.navbar .section #admin-dropdown-trigger #admin-dropdown .dropdown-section .section-link:hover {
+  background-color: #e6e6e6;
+  font-size: 100%;
+  font-weight: 500;
+  background-color: rgba(255, 0, 0, 0.1);
+}
 .navbar .account-section {
   justify-content: flex-end;
 }
@@ -457,6 +508,7 @@ a {
 }
 .new-device-form .submissions .record-section .record-label {
   opacity: 0.75;
+  z-index: 5 !important;
 }
 .new-device-form .submissions .record-section .record-input, .new-device-form .submissions .record-section .record-label {
   width: 12.5%;

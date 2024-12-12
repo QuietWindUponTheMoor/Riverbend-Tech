@@ -209,6 +209,55 @@ a {
                 }
             }
         }
+        #admin-dropdown-trigger {
+            min-width: 100px;
+            user-select: none;
+            .nav-button {
+                border-radius: 0;
+                width: 100%;
+            }
+            &:hover #admin-dropdown {
+                display: flex;
+            }
+            #admin-dropdown {
+                position: absolute;
+                flex-direction: row;
+                display: none;
+                top: calc(100% + 5px);
+                left: 50%;
+                transform: translate(-50%);
+                min-width: 60vw;
+                padding: 1rem;
+                background-color: white;
+                border-radius: 3px;
+                border: 1px solid red;
+                gap: 1rem;
+                flex-wrap: wrap;
+                z-index: 99 !important;
+                .dropdown-section {
+                    flex-direction: column;
+                    min-width: 19%;
+                    flex-wrap: wrap;
+                    .section-title {
+                        font-size: 110%;
+                        font-weight: 600;
+                    }
+                    .section-link {
+                        font-weight: 100;
+                        font-size: 80%;
+                        padding-inline: 3px;
+                        padding-left: 8px;
+                        transition: font-size, font-weight 300ms;
+                        &:hover {
+                            background-color: darken(white, 10%);
+                            font-size: 100%;
+                            font-weight: 500;
+                            background-color: rgba(red, 0.1);
+                        }
+                    }
+                }
+            }
+        }
     }
     .account-section {
         justify-content: flex-end;
@@ -448,6 +497,7 @@ a {
             gap: 0.25rem;
             .record-label {
                 opacity: 0.75;
+                z-index: 5 !important;
             }
             .record-input, .record-label {
                 $numberOfColumns: 8;

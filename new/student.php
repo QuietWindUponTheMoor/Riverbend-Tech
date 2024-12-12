@@ -56,8 +56,8 @@
         </div>
 
         <div class="form-controls">
-        <a class="button bg-green" id="submit-records">Submit Records</a>
-        <a class="button bg-yellow" id="reset-form">Reset Form</a>
+            <a class="button bg-green" id="submit-records">Submit Records</a>
+            <a class="button bg-yellow" id="reset-form">Reset Form</a>
             <a class="button bg-blue" id="new-record">Add New Record</a>
         </div>
         

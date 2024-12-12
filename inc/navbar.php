@@ -6,14 +6,27 @@
         <span class="subsection">
             <a class="nav-title" href="/">Riverbend Tech Team</a>
         </span>
-        <span class="subsection">
-            <a class="nav-button" href="/devices.php">Devices</a>
-            <a class="nav-button" href="/device-issues.php">Device Issues</a>
+        <span class="subsection" id="admin-dropdown-trigger">
+            <a class="nav-button">Management Menu</a>
+            <div id="admin-dropdown">
+                <div class="dropdown-section">
+                    <p class="section-title">Add New</p>
+                    <a class="section-link" href="/new/checkout.php">Checkout</a>
+                    <a class="section-link _manager" href="/new/device.php">Devices</a>
+                    <a class="section-link _admin" href="/new/student.php">Students</a>
+                    <a class="section-link _admin" href="/new/administrator.php">Admins</a>
+                    <a class="section-link _admin" href="/new/manager.php">Managers</a>
+                    <a class="section-link _admin" href="/new/allowlist_user.php">Allowlist User</a>
+                </div>
+                <div class="dropdown-section">
+                    <p class="section-title">Export</p>
+                    <a class="section-link _manager" href="">Students</a>
+                </div>
+            </div>
         </span>
         <span class="subsection">
-            <a class="nav-button-secondary _manager" href="/new/device.php">Add Devices</a>
-            <a class="nav-button-secondary _admin" href="/new/student.php">Add Students</a>
-            <a class="nav-button-secondary" href="/new/checkout.php">New Checkout</a>
+            <a class="nav-button" href="/devices.php">Devices</a>
+            <a class="nav-button" href="/device-issues.php">Chromebook Checkouts</a>
         </span>
     </div>
 
@@ -31,6 +44,18 @@
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script type="text/javascript">
+// Navbar
+let adminDropdownToggled = false;
+$("#admin-dropdown-trigger").on("click", function () {
+    if (!adminDropdownToggled) {
+        $("#admin-dropdown").css("display", "flex");
+        adminDropdownToggled = true;
+    } else {
+        $("#admin-dropdown").hide();
+        adminDropdownToggled = false;
+    }
+});
+
 // User
 let user = null;
 let rank = null;
@@ -41,7 +66,8 @@ if (isCookieValid("user")) {
     // Get user
     user = JSON.parse((getCookie("user")));
     $("#user-fullname").text(user.full_name);
-    $("#user-image-container").find("img").attr("src", user.image);
+    let d = new Date();
+    $("#user-image-container").find("img").attr("src", `${user.image}?${d.getTime()}`);
     rank = user.perm_level;
 } else {
     $(".nav-user, #signout-button").hide();
@@ -100,6 +126,7 @@ function handleCredentialResponse(response) {
 
             } else {
                 console.error("Authentication failed:", data.error);
+                console.error("Additional info on fail:", data);
             }
         },
         error: function(xhr, status, error) {

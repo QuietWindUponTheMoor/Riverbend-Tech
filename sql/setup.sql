@@ -1,4 +1,6 @@
 -- Set up
+CREATE DATABASE IF NOT EXISTS ChromebookCheckouts;
+USE ChromebookCheckouts;
 SET GLOBAL event_scheduler = ON;
 SHOW VARIABLES LIKE 'event_scheduler';
 
