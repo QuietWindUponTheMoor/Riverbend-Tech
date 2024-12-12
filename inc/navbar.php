@@ -19,6 +19,10 @@
                     <a class="section-link _admin" href="/new/allowlist_user.php">Allowlist User</a>
                 </div>
                 <div class="dropdown-section">
+                    <p class="section-title">Create</p>
+                    <a class="section-link _manager" href="/create/email_groups.php">Email Groups</a>
+                </div>
+                <div class="dropdown-section">
                     <p class="section-title">Export</p>
                     <a class="section-link _manager" href="">Students</a>
                 </div>

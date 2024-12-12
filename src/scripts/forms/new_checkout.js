@@ -1,4 +1,4 @@
-if (!user || user.perm_level === 0) {
+if (!user) {
     window.location.assign("/");
 }
 else {

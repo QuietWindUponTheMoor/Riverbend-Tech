@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css");
 * {
   box-sizing: border-box;
 }
@@ -232,6 +233,7 @@ a {
 }
 .navbar .section #admin-dropdown-trigger:hover #admin-dropdown {
   display: flex;
+  z-index: 99 !important;
 }
 .navbar .section #admin-dropdown-trigger #admin-dropdown {
   position: absolute;
@@ -247,6 +249,8 @@ a {
   border: 1px solid red;
   gap: 1rem;
   flex-wrap: wrap;
+}
+.navbar .section #admin-dropdown-trigger #admin-dropdown * {
   z-index: 99 !important;
 }
 .navbar .section #admin-dropdown-trigger #admin-dropdown .dropdown-section {
@@ -507,8 +511,7 @@ a {
   gap: 0.25rem;
 }
 .new-device-form .submissions .record-section .record-label {
-  opacity: 0.75;
-  z-index: 5 !important;
+  color: rgb(109, 106, 106);
 }
 .new-device-form .submissions .record-section .record-input, .new-device-form .submissions .record-section .record-label {
   width: 12.5%;
@@ -539,4 +542,98 @@ a {
   padding-top: 1rem;
   width: 100%;
   gap: 1rem;
+}
+
+.email-groups-form {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 85%;
+  background-color: white;
+  border: 1px solid rgba(41, 37, 36, 0.5);
+  padding: 1rem;
+}
+.email-groups-form .form {
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+}
+.email-groups-form .form .available-students, .email-groups-form .form .new-group {
+  position: relative;
+  flex-direction: column;
+  border: 1px solid red;
+  border-radius: 3px;
+  padding: 0.25rem;
+  width: 60%;
+}
+.email-groups-form .form .available-students {
+  width: 20%;
+}
+.email-groups-form .form .student {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(233, 231, 231);
+  padding: 5px;
+  border-radius: 4px;
+}
+.email-groups-form .form .student .info {
+  flex-direction: column;
+}
+.email-groups-form .form .student .info .name, .email-groups-form .form .student .info .sid {
+  font-size: 75%;
+  font-weight: 300;
+}
+.email-groups-form .form .student .info .name {
+  font-weight: 500;
+}
+.email-groups-form .form .student .img-container {
+  width: 30px;
+  aspect-ratio: 1/1;
+  height: 30px;
+  background-color: rgb(138, 138, 231);
+  border-radius: 3px;
+  cursor: pointer;
+}
+.email-groups-form .form .student .img-container img {
+  width: 100%;
+  height: 100%;
+}
+.email-groups-form .form .student .img-container:hover {
+  background-color: rgb(115, 115, 218);
+}
+.email-groups-form .form .student:hover {
+  cursor: grab !important;
+}
+.email-groups-form .form .student:active, .email-groups-form .form .student:focus {
+  cursor: grabbing !important;
+}
+.email-groups-form .form .student-drop-hover {
+  position: relative;
+}
+.email-groups-form .form .student-drop-hover::after {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  right: 0.25rem;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  background-color: rgba(255, 0, 0, 0.1);
+  border-radius: 3px;
+}
+.email-groups-form .form .student-drop-hover:active, .email-groups-form .form .student-drop-hover:focus {
+  cursor: grabbing !important;
+}
+.email-groups-form .form .new-group .student .img-container {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .email-groups-form .form {
+    flex-direction: column;
+  }
+  .email-groups-form .form .available-students, .email-groups-form .form .new-group {
+    width: 100%;
+  }
 }/*# sourceMappingURL=main.css.map */
