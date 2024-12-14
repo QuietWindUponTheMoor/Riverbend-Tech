@@ -15,7 +15,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
 
     <div class="import-export-form">
-        <h3>Import Students</h3>
+        <h3>Import Devices</h3>
 
         <input type="file" id="import-csv" accept=".csv", multiple/>
 
@@ -30,7 +30,7 @@
 
     <script type="text/javascript" src="/src/scripts/confirmation.js"></script>
     <script type="text/javascript" src="/src/scripts/modals.js"></script>
-    <script type="text/javascript" src="/src/scripts/import/student.js"></script>
+    <script type="text/javascript" src="/src/scripts/import/device.js"></script>
  
 </body>
 </html>

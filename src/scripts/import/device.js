@@ -34,25 +34,23 @@ $("#import-csv").on("change", async function () {
 async function processRecord(record) {
     return new Promise((resolveRecord, rejectRecord) => {
         try {
-            let sid = record.sid;
-            let first = record.first;
-            let last = record.last;
-            let grade = record.grade;
-            let homeroom = record.homeroom?.trim().length ? record.homeroom : null;
-            let email = record.email?.trim().length ? record.email : null;
-            let asset = record.device_asset?.trim().length ? record.device_asset : null;
-            let loaner = record.loaner_asset?.trim().length ? record.loaner_asset : null;
+            let asset = record.asset;
+            let serial = record.serial;
+            let PO = record.purchaseorder;
+            let model = record.model;
+            let building = record.building;
+            let assignment = record.assignment;
+            let person = record.person;
 
             // Insert data
             let data = {
-                sid: sid,
-                first: first,
-                last: last,
-                grade: grade,
-                homeroom: homeroom,
-                email: email,
                 asset: asset,
-                loaner: loaner
+                serial: serial,
+                PurchaseOrder: PO,
+                model: model,
+                building: building,
+                assignment: assignment,
+                person: person
             };
             $.ajax({
                 type: "POST",  
@@ -109,16 +107,15 @@ async function processPapaParse(file) {
                 try {
                     // Configure
                     const requiredHeaders = [
-                        "sid",
-                        "first",
-                        "last",
-                        "grade",
-                        "homeroom",
-                        "email",
-                        "device_asset"
+                        "asset",
+                        "serial",
+                        "model",
+                        "building",
+                        "assignment",
                     ];
                     const optionalHeaders = [
-                        "loaner_asset",
+                        "purchaseorder",
+                        "person"
                     ];
                     let data = results.data;
                     let headers = results.meta.fields;

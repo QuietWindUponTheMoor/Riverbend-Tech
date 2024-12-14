@@ -488,7 +488,7 @@ a {
   gap: 0.5rem;
 }
 
-.new-device-form {
+.new-device-form, .list-container {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -497,45 +497,45 @@ a {
   border: 1px solid rgba(41, 37, 36, 0.5);
   padding: 1rem;
 }
-.new-device-form .submissions {
+.new-device-form .submissions, .new-device-form .list, .list-container .submissions, .list-container .list {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   width: 100%;
 }
-.new-device-form .submissions .record-section {
+.new-device-form .submissions .record-section, .new-device-form .list .record-section, .list-container .submissions .record-section, .list-container .list .record-section {
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
   width: 100%;
   gap: 0.25rem;
 }
-.new-device-form .submissions .record-section .record-label {
+.new-device-form .submissions .record-section .record-label, .new-device-form .list .record-section .record-label, .list-container .submissions .record-section .record-label, .list-container .list .record-section .record-label {
   color: rgb(109, 106, 106);
 }
-.new-device-form .submissions .record-section .record-input, .new-device-form .submissions .record-section .record-label {
+.new-device-form .submissions .record-section .record-input, .new-device-form .submissions .record-section .record-label, .new-device-form .list .record-section .record-input, .new-device-form .list .record-section .record-label, .list-container .submissions .record-section .record-input, .list-container .submissions .record-section .record-label, .list-container .list .record-section .record-input, .list-container .list .record-section .record-label {
   width: 12.5%;
   padding: 0.25rem;
   font-size: 90% !important;
 }
-.new-device-form .submissions .record-section .record-input {
+.new-device-form .submissions .record-section .record-input, .new-device-form .list .record-section .record-input, .list-container .submissions .record-section .record-input, .list-container .list .record-section .record-input {
   border-radius: 2px;
   border: 1px solid rgba(255, 0, 0, 0.5);
 }
-.new-device-form .submissions .record-section .record-input:active, .new-device-form .submissions .record-section .record-input:focus {
+.new-device-form .submissions .record-section .record-input:active, .new-device-form .submissions .record-section .record-input:focus, .new-device-form .list .record-section .record-input:active, .new-device-form .list .record-section .record-input:focus, .list-container .submissions .record-section .record-input:active, .list-container .submissions .record-section .record-input:focus, .list-container .list .record-section .record-input:active, .list-container .list .record-section .record-input:focus {
   outline: 1px solid red;
 }
-.new-device-form .submissions .record-section .record-input::-moz-placeholder {
+.new-device-form .submissions .record-section .record-input::-moz-placeholder, .new-device-form .list .record-section .record-input::-moz-placeholder, .list-container .submissions .record-section .record-input::-moz-placeholder, .list-container .list .record-section .record-input::-moz-placeholder {
   font-size: 90% !important;
 }
-.new-device-form .submissions .record-section .record-input::placeholder {
+.new-device-form .submissions .record-section .record-input::placeholder, .new-device-form .list .record-section .record-input::placeholder, .list-container .submissions .record-section .record-input::placeholder, .list-container .list .record-section .record-input::placeholder {
   font-size: 90% !important;
 }
-.new-device-form .submissions .record-section .item-number {
+.new-device-form .submissions .record-section .item-number, .new-device-form .list .record-section .item-number, .list-container .submissions .record-section .item-number, .list-container .list .record-section .item-number {
   justify-content: center;
   align-items: center;
 }
-.new-device-form .form-controls {
+.new-device-form .form-controls, .list-container .form-controls {
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-end;
@@ -689,4 +689,51 @@ a {
 .import-export-form .progress-container .upload-error {
   display: flex !important;
   color: rgb(255, 19, 2);
+}
+
+.list-container {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 85%;
+  background-color: white;
+  border: 1px solid rgba(41, 37, 36, 0.5);
+  padding: 1rem;
+  gap: 1rem;
+}
+.list-container .list {
+  font-size: 80%;
+  border-inline: 1px solid #6e70e4;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.list-container .list:last-child, .list-container .list .record-section:last-child {
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.list-container .list #label-section {
+  background-color: #6e70e4;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  padding-bottom: 0.25rem;
+}
+.list-container .list #label-section .record-label {
+  color: white !important;
+}
+.list-container .list .record-section:nth-child(even) {
+  background-color: #aeb0f0;
+}
+.list-container .list .record-section:nth-child(odd) {
+  background-color: #efeffc;
+}
+.list-container .list .record-section .record-input, .list-container .list .record-section .record-label {
+  width: 12.5%;
+}
+.list-container .list .record-section .record-input {
+  border: none;
+  background-color: transparent;
+  font-size: 90% !important;
+}
+.list-container .list .record-section .record-input:active, .list-container .list .record-section .record-input:focus {
+  outline: 1px solid #6e70e4;
 }/*# sourceMappingURL=main.css.map */

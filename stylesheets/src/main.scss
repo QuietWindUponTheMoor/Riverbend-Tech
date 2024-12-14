@@ -480,7 +480,7 @@ a {
     }
 }
 
-.new-device-form {
+.new-device-form, .list-container {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
@@ -488,7 +488,7 @@ a {
     background-color: white;
     border: 1px solid rgba($main-text, 0.5);
     padding: 1rem;
-    .submissions {
+    .submissions, .list {
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
@@ -679,6 +679,58 @@ a {
         .upload-error {
             display: flex !important;
             color: rgb(255, 19, 2);
+        }
+    }
+}
+
+.list-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 85%;
+    background-color: white;
+    border: 1px solid rgba($main-text, 0.5);
+    padding: 1rem;
+    gap: 1rem;
+    .list {
+        $main-bg-color: #6e70e4;
+        $alternate-bg-color: lighten($main-bg-color, 15%);
+        font-size: 80%;
+        border-inline: 1px solid $main-bg-color;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        &:last-child, .record-section:last-child {
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        #label-section {
+            background-color: $main-bg-color;
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+            padding-bottom: 0.25rem;
+            .record-label {
+                color: white !important;
+            }
+        }
+        .record-section {
+            &:nth-child(even) {
+                background-color: $alternate-bg-color;
+            }
+            &:nth-child(odd) {
+                background-color: lighten($alternate-bg-color, 15%);
+            }
+            .record-input, .record-label {
+                $numberOfColumns: 8;
+                width: calc(100% / $numberOfColumns);
+            }
+            .record-input {
+                border: none;
+                background-color: transparent;
+                font-size: 90% !important;
+                &:active, &:focus {
+                    outline: 1px solid $main-bg-color;
+                }
+            }
         }
     }
 }

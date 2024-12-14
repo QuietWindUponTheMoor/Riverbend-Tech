@@ -29,10 +29,12 @@
                 <div class="dropdown-section">
                     <p class="section-title">Import</p>
                     <a class="section-link _manager" href="/import/students.php">Students</a>
+                    <a class="section-link _manager" href="/import/devices.php">Devices</a>
                 </div>
             </div>
         </span>
         <span class="subsection">
+            <a class="nav-button" href="/students.php">Students</a>
             <a class="nav-button" href="/devices.php">Devices</a>
             <a class="nav-button" href="/device-issues.php">Chromebook Checkouts</a>
         </span>
