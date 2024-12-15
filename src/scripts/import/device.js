@@ -36,7 +36,7 @@ async function processRecord(record) {
         try {
             let asset = record.asset;
             let serial = record.serial;
-            let PO = record.purchaseorder;
+            let PO = record.purchaseorder?.trim().length ? record.purchaseorder : null;
             let model = record.model;
             let building = record.building;
             let assignment = record.assignment;
@@ -54,7 +54,7 @@ async function processRecord(record) {
             };
             $.ajax({
                 type: "POST",  
-                url: "/php/forms/new_student.php",
+                url: "/php/forms/new_device.php",
                 data: data,
                 success: function (response) {
                     if (parseInt(response) === 1) {

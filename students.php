@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devices</title>
+    <title>Students List</title>
     <link rel="stylesheet" href="/stylesheets/compiled/main.css">
     <script type="text/javascript" src="/src/scripts/jquery/jquery-3.7.1.js"></script>
     <script type="text/javascript" src="/src/scripts/navbar.js" defer></script>
@@ -15,31 +15,44 @@
     <div class="list-container">
         <h3>Students List</h3>
 
-        <div class="list" id="list">
-            <!-- Label section -->
-            <span class="record-section" id="label-section">
-                <p class="record-label item-number">Student ID</p>
-                <p class="record-label">Last Name</p>
-                <p class="record-label">First Name</p>
-                <p class="record-label">Grade</p>
-                <p class="record-label">Homeroom</p>
-                <p class="record-label">Email</p>
-                <p class="record-label">Chromebook Asset</p>
-                <p class="record-label">Loaner Chromebook</p>
-            </span>
+        <script type="text/javascript" src="/src/scripts/list/_recordConfig.js"></script>
+        <script type="text/javascript">
+        // Globals
+        firstSort = true;
 
-            
-            <span class="record-section" id="record-1">
-                <p class="record-label item-number sid">2030018</p>
-                <input class="record-input last" placeholder="Doe"/>
-                <input class="record-input first" placeholder="John"/>
-                <input class="record-input grade" placeholder="5"/>
-                <input class="record-input homeroom" placeholder="5C"/>
-                <input class="record-input email" placeholder="johndoe@riverbendschools.net"/>
-                <input class="record-input asset" placeholder="23HPTG9-0000000001-23"/>
-                <input class="record-input loaner" placeholder="20HP21"/>
-            </span>
+        // Configure file here
+        let sortBy = "ASC";
+        let groupBy = "sid";
+        let hardFilterBy = null;
+        let searchFilterBy = null;
+        let recordType = recordConfig.students;
+        let headers = [
+            {identifier: "sid", value: "Student ID", placeholder: ""},
+            {identifier: "last", value: "Last Name", placeholder: ""},
+            {identifier: "first", value: "First Name", placeholder: ""},
+            {identifier: "grade", value: "Grade", placeholder: ""},
+            {identifier: "homeroom", value: "Homeroom", placeholder: ""},
+            {identifier: "email", value: "Email", placeholder: ""},
+            {identifier: "asset", value: "Chromebook Asset", placeholder: ""},
+            {identifier: "loaner", value: "Loaner Asset", placeholder: ""},
+        ];
+        let selectFileURL = "/php/select/students.php";
+        let firstColIsEditable = false;
+        </script>
+
+        <div class="sorting-and-grouping">
+            <div class="section">
+                <h4>Search:</h4>
+                <div class="search-container">
+                    <div class="img-container"><img src="/assets/icons/search.png"/></div>
+                    <input class="search-input" id="list-search" placeholder=":column:<search>, or <search>"/>
+                </div>
+            </div>
         </div>
+
+        <p class="tooltip">Click on a column header to sort either ascending or descending.</p>
+        
+        <div class="list" id="list"></div>
 
     </div>
 

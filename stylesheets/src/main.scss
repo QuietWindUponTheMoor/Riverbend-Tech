@@ -692,6 +692,56 @@ a {
     border: 1px solid rgba($main-text, 0.5);
     padding: 1rem;
     gap: 1rem;
+    .tooltip {
+        font-size: 80%;
+        font-weight: 500;
+    }
+    .sorting-and-grouping {
+        flex-direction: column;
+        gap: 0.25rem;
+        width: 100%;
+        $border: 1px solid lighten(black, 30%);
+        #hard-filters-container {
+            padding: 0.25rem;
+            border-radius: 3px;
+            border: $border;
+        }
+        .section {
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            flex-wrap: wrap;
+            h4 {
+                margin: 0;
+                font-size: 70%;
+            }
+            .search-container {
+                flex-direction: row;
+                width: 100%;
+                padding: 3px;
+                border-radius: 3px;
+                gap: 5px;
+                border: $border;
+                .img-container {
+                    width: 20px;
+                    aspect-ratio: 1 / 1;
+                    height: 20px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .search-input {
+                    border: none;
+                    outline: transparent;
+                    width: 100%;
+                    padding-left: 10px;
+                    border-left: $border;
+                }
+            }
+        }
+    }
     .list {
         $main-bg-color: #6e70e4;
         $alternate-bg-color: lighten($main-bg-color, 15%);
@@ -707,9 +757,23 @@ a {
             background-color: $main-bg-color;
             border-top-right-radius: 5px;
             border-top-left-radius: 5px;
+            padding-top: 0.25rem;
             padding-bottom: 0.25rem;
             .record-label {
                 color: white !important;
+                flex-direction: row;
+                justify-content: space-between;
+                cursor: pointer;
+                &:hover {
+                    background-color: darken($alternate-bg-color, 5%);
+                    &::after {
+                        content: '';
+                        background-image: url("/assets/icons/filter-sort.png");
+                        background-size: cover;
+                        width: 15px;
+                        height: 15px;
+                    }
+                }
             }
         }
         .record-section {
@@ -731,6 +795,9 @@ a {
                     outline: 1px solid $main-bg-color;
                 }
             }
+        }
+        .list-section .record-label {
+            color: $main-text !important;
         }
     }
 }

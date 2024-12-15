@@ -5,12 +5,15 @@ require($_SERVER["DOCUMENT_ROOT"]."/php/connector.php");
 require($_SERVER["DOCUMENT_ROOT"]."/php/database/queries.php");
 
 // Process data
-$data = array_filter($_POST);
+$data = array_filter($_POST, function($value) {
+    return $value !== "" && $value !== false;
+});
+
 
 // Get values
 $asset = $data["asset"];
 $serial = $data["serial"];
-$PO = $data["PurchaseOrder"];
+$PO = $data["PurchaseOrder"] ?? null;
 $model = $data["model"];
 $building = $data["building"];
 $assignment = $data["assignment"];
