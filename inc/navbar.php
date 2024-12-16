@@ -7,8 +7,14 @@
             <a class="nav-title" href="/">Riverbend Tech Team</a>
         </span>
         <span class="subsection" id="admin-dropdown-trigger">
-            <a class="nav-button">Management Menu</a>
+            <a class="nav-button" id="nav-menu-button">Menu</a>
             <div id="admin-dropdown">
+                <div class="dropdown-section">
+                    <p class="section-title">Lists</p>
+                    <a class="section-link" href="/lists/students.php">Students</a>
+                    <a class="section-link" href="/lists/devices.php">Devices</a>
+                    <a class="section-link" href="/lists/device-issues.php">Device Issues</a>
+                </div>
                 <div class="dropdown-section">
                     <p class="section-title">Add New</p>
                     <a class="section-link" href="/new/checkout.php">Checkout</a>
@@ -32,11 +38,6 @@
                     <a class="section-link _manager" href="/import/devices.php">Devices</a>
                 </div>
             </div>
-        </span>
-        <span class="subsection">
-            <a class="nav-button" href="/students.php">Students</a>
-            <a class="nav-button" href="/devices.php">Devices</a>
-            <a class="nav-button" href="/device-issues.php">Chromebook Checkouts</a>
         </span>
     </div>
 

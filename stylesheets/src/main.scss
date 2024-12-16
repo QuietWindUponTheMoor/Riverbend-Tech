@@ -174,8 +174,13 @@ a {
                 font-size: 130%;
                 font-weight: 500;
             }
-            .nav-button {
-                border: 1px solid rgb(63, 63, 218);
+            #nav-menu-button {
+                $navBtnColor: rgb(63, 63, 218);
+                border: 1px solid $navBtnColor;
+                &:hover {
+                    background-color: $navBtnColor;
+                    color: white;
+                }
             }
             .nav-button, .nav-button-secondary {
                 flex-direction: column;

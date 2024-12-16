@@ -62,7 +62,7 @@ class List {
             let inputs = "";
             for (let ci = 1; ci < record.length; ci++) { // ci = column index
                 let value = "";
-                if (record[ci] === undefined || record[ci] === null || record[ci].trim().length === 0) {
+                if (record[ci] === undefined || record[ci] === null || record[ci].toString().trim().length === 0) {
                     value = "";
                 } else {
                     value = record[ci];

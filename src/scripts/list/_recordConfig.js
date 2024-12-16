@@ -18,4 +18,14 @@ let recordConfig = {
         record.assignment,
         record.person
     ],
+    checkouts: record => [
+        record.studentID,
+        record.last,
+        record.first,
+        record.assignedCB,
+        record.loanerCB,
+        record.school,
+        record.grade,
+        record.issue
+    ],
 };
