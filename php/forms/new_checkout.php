@@ -37,4 +37,22 @@ $insert = new Query(
     $sid,
 ) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
 
+$insert = new Query(
+    $conn,
+    "i",
+    "UPDATE students SET loaner_asset=? WHERE `sid`=?;",
+    "ss",
+    strtoupper($loaner),
+    $sid,
+) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
+
+$insert = new Query(
+    $conn,
+    "i",
+    "UPDATE cbinventory SET PERSON=? WHERE UPPER(asset)=UPPER(?);",
+    "ss",
+    $sid,
+    strtoupper($loaner),
+) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
+
 echo 1;

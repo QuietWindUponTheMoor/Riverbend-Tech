@@ -11,31 +11,33 @@
             <div id="admin-dropdown">
                 <div class="dropdown-section">
                     <p class="section-title">Lists</p>
-                    <a class="section-link" href="/lists/students.php">Students</a>
-                    <a class="section-link" href="/lists/devices.php">Devices</a>
-                    <a class="section-link" href="/lists/device-issues.php">Device Issues</a>
+                    <a class="section-link" href="/0/lists/students">Students</a>
+                    <a class="section-link" href="/0/lists/devices">Devices</a>
+                    <a class="section-link" href="/0/lists/device-issues">Device Issues</a>
                 </div>
                 <div class="dropdown-section">
                     <p class="section-title">Add New</p>
-                    <a class="section-link" href="/new/checkout.php">Checkout</a>
-                    <a class="section-link _manager" href="/new/device.php">Devices</a>
-                    <a class="section-link _admin" href="/new/student.php">Students</a>
-                    <a class="section-link _admin" href="/new/administrator.php">Admins</a>
-                    <a class="section-link _admin" href="/new/manager.php">Managers</a>
-                    <a class="section-link _admin" href="/new/allowlist_user.php">Allowlist User</a>
+                    <a class="section-link" href="/0/new/checkout">Checkout</a>
+                    <a class="section-link _manager" href="/0/new/device">Devices</a>
+                    <a class="section-link _admin" href="/0/new/student">Students</a>
+                    <a class="section-link _admin" href="/0/new/administrator">Admins</a>
+                    <a class="section-link _admin" href="/0/new/manager">Managers</a>
+                    <a class="section-link _admin" href="/0/new/allowlist_user">Allowlist User</a>
                 </div>
                 <div class="dropdown-section">
                     <p class="section-title">Create</p>
-                    <a class="section-link _manager" href="/create/email_groups.php">Email Groups</a>
+                    <a class="section-link _manager" href="/0/create/email_groups">Email Groups</a>
                 </div>
                 <div class="dropdown-section">
                     <p class="section-title">Export</p>
-                    <a class="section-link _manager" href="">Students</a>
+                    <a class="section-link _manager" href="/0/export/students">Students</a>
+                    <a class="section-link _manager" href="/0/export/devices">Devices</a>
+                    <a class="section-link _manager" href="/0/export/users">Users</a>
                 </div>
                 <div class="dropdown-section">
                     <p class="section-title">Import</p>
-                    <a class="section-link _manager" href="/import/students.php">Students</a>
-                    <a class="section-link _manager" href="/import/devices.php">Devices</a>
+                    <a class="section-link _manager" href="/0/import/students">Students</a>
+                    <a class="section-link _manager" href="/0/import/devices">Devices</a>
                 </div>
             </div>
         </span>
