@@ -26,7 +26,7 @@
         let hardFilterBy = null;
         let searchFilterBy = null;
         let recordType = recordConfig.checkouts;
-        let headers = [
+        let headers = [ // Identifier must be exactly the same as table column name
             {identifier: "studentID", value: "Student ID", placeholder: ""},
             {identifier: "last", value: "Last Name", placeholder: ""},
             {identifier: "first", value: "First Name", placeholder: ""},
@@ -37,6 +37,7 @@
             {identifier: "issue", value: "Brief Issue", placeholder: ""},
         ];
         let selectFileURL = "/php/select/checkouts.php";
+        let updateFileURL = "/php/update/device-issues.php";
         let firstColIsEditable = true;
         </script>
 

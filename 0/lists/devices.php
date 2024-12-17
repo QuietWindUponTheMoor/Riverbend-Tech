@@ -26,16 +26,17 @@
         let hardFilterBy = null;
         let searchFilterBy = null;
         let recordType = recordConfig.devices;
-        let headers = [
+        let headers = [ // Identifier must be exactly the same as table column name
             {identifier: "serial", value: "Serial #", placeholder: ""},
             {identifier: "asset", value: "Asset Tag", placeholder: ""},
             {identifier: "model", value: "Model #", placeholder: ""},
             {identifier: "PO", value: "Purchase Order", placeholder: ""},
             {identifier: "building", value: "building", placeholder: ""},
             {identifier: "assignment", value: "Assignment", placeholder: ""},
-            {identifier: "Person", value: "Person/Student", placeholder: ""},
+            {identifier: "person", value: "Person/Student", placeholder: ""},
         ];
         let selectFileURL = "/php/select/devices.php";
+        let updateFileURL = "/php/update/devices.php";
         let firstColIsEditable = true;
         </script>
 

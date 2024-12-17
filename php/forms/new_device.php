@@ -43,14 +43,4 @@ $insert = new Query(
     $person
 ) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
 
-// Update student record, if it exists
-$insert = new Query(
-    $conn,
-    "i",
-    "UPDATE students SET device_asset=UPPER(?) WHERE `sid`=?;",
-    "ss",
-    $asset,
-    $person
-) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
-
 echo 1;

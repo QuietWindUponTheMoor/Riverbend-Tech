@@ -26,17 +26,18 @@
         let hardFilterBy = null;
         let searchFilterBy = null;
         let recordType = recordConfig.students;
-        let headers = [
+        let headers = [ // Identifier must be exactly the same as table column name
             {identifier: "sid", value: "Student ID", placeholder: ""},
             {identifier: "last", value: "Last Name", placeholder: ""},
             {identifier: "first", value: "First Name", placeholder: ""},
             {identifier: "grade", value: "Grade", placeholder: ""},
             {identifier: "homeroom", value: "Homeroom", placeholder: ""},
             {identifier: "email", value: "Email", placeholder: ""},
-            {identifier: "asset", value: "Chromebook Asset", placeholder: ""},
-            {identifier: "loaner", value: "Loaner Asset", placeholder: ""},
+            {identifier: "device_asset", value: "Chromebook Asset", placeholder: ""},
+            {identifier: "loaner_asset", value: "Loaner Asset", placeholder: ""},
         ];
         let selectFileURL = "/php/select/students.php";
+        let updateFileURL = "/php/update/students.php";
         let firstColIsEditable = false;
         </script>
 

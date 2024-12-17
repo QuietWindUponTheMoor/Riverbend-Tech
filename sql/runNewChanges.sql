@@ -1,65 +1,16 @@
--- Set up
-CREATE DATABASE IF NOT EXISTS riverbendtech;
 USE riverbendtech;
-SET GLOBAL event_scheduler = ON;
-SHOW VARIABLES LIKE 'event_scheduler';
 
--- Tables
-CREATE TABLE IF NOT EXISTS checkouts (
-  recordID bigint(44) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  studentID bigint(44) NOT NULL,
-  loanerCB varchar(20) NOT NULL,
-  issue varchar(1200) NOT NULL
-);
+DROP TABLE IF EXISTS cbinventory_deprovisioned, checkouts_del, dropped_students, loaners_del;
 
-CREATE TABLE IF NOT EXISTS loaners (
-    loaner VARCHAR(25) PRIMARY KEY NOT NULL,
-    serial VARCHAR(15) DEFAULT NULL,
-    assignment VARCHAR(128) DEFAULT "SPARE" NOT NULL
-);
+DROP EVENT IF EXISTS update_loaners_assignment;
+DROP EVENT IF EXISTS deprovision_checks;
 
-CREATE TABLE IF NOT EXISTS cbinventory (
-    asset VARCHAR(128) PRIMARY KEY NOT NULL,
-    `serial` VARCHAR(32) NOT NULL,
-    PO VARCHAR(128) DEFAULT NULL,
-    model VARCHAR(32) NOT NULL,
-    building VARCHAR(10) DEFAULT 'FES' NOT NULL,
-    assignment VARCHAR(128) NOT NULL, -- OPTIONS: "LOANER", "STUDENT", "STAFF", "DEPROVISIONED", "DONOR", etc
-    person VARCHAR(128) DEFAULT 'NONE' NOT NULL -- OPTIONS: "<StudentID>" if assignment "STUDENT", "Mrs. <Name>" if assignment "STAFF", "NONE" if assignment is "LOANER"
-);
-
-CREATE TABLE IF NOT EXISTS students (
-    `sid` VARCHAR(32) PRIMARY KEY NOT NULL, -- Student ID
-    `first` VARCHAR(128) DEFAULT NULL,
-    `last` VARCHAR(128) DEFAULT NULL,
-    grade VARCHAR(128) NOT NULL, -- Options: "K", 1, 2, 3, -- 12, etc.
-    homeroom VARCHAR(128) DEFAULT NULL, -- Examples: 2A, KB, Mr. <Last>, Mrs. <Last>, etc
-    email VARCHAR(128) DEFAULT 'UNSET' NOT NULL,
-    device_asset VARCHAR(128) DEFAULT 'UNSET' NOT NULL,
-    loaner_asset VARCHAR(128) DEFAULT NULL
-);
-
-CREATE TABLE IF NOT EXISTS users (
-    `uid` BIGINT PRIMARY KEY NOT NULL,
-    permission_level INT(2) DEFAULT 0 NOT NULL, -- 0 = default, 1 = manager, 2 = admin
-    email VARCHAR(256) NOT NULL,
-    `image` TEXT NOT NULL,
-    `first` VARCHAR(128) NOT NULL,
-    `last` VARCHAR(128) NOT NULL,
-    full_name VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS managers (
-    `email` VARCHAR(256) PRIMARY KEY NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS admins (
-    `email` VARCHAR(256) PRIMARY KEY NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS external_whitelist (
-    `email` VARCHAR(256) PRIMARY KEY NOT NULL
-);
+ALTER TABLE checkouts DROP COLUMN school,
+    DROP COLUMN assignedCB,
+    DROP COLUMN grade,
+    DROP COLUMN started,
+    DROP COLUMN finished,
+    DROP COLUMN softDeleted;
 
 -- TRIGGERS
 DELIMITER $$

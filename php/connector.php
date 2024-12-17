@@ -2,7 +2,7 @@
 
 $host = 'localhost';
 $port = 3306;
-$database = "ChromebookCheckouts";
+$database = "riverbendtech";
 $user = "root";
 $pass = "";
 

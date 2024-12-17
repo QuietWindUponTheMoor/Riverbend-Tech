@@ -53,9 +53,9 @@ class List {
 
             let firstCol = "";
             if (this.firstColIsEditable) {
-                firstCol = `<input class="record-input ${this.headers[0].identifier}" value="${record[0]}" placeholder="${this.headers[0].placeholder}"/>`;
+                firstCol = `<input class="record-input ${this.headers[0].identifier}" value="${record[0]}" data-col="${this.headers[0].identifier}" placeholder="${this.headers[0].placeholder}"/>`;
             } else {
-                firstCol = `<p class="record-label ${this.headers[0].identifier}">${record[0]}</p>`;
+                firstCol = `<p class="record-label ${this.headers[0].identifier}"  data-col="${this.headers[0].identifier}">${record[0]}</p>`;
             }
 
             // Iterate over the record values
@@ -67,7 +67,7 @@ class List {
                 } else {
                     value = record[ci];
                 }
-                inputs += `<input class="record-input ${this.headers[ci].identifier}" value="${value}" placeholder="${this.headers[ci].placeholder}"/>`;
+                inputs += `<input class="record-input ${this.headers[ci].identifier}" value="${value}" data-col="${this.headers[ci].identifier}" placeholder="${this.headers[ci].placeholder}"/>`;
             }
 
             let recordElement = 
@@ -114,6 +114,30 @@ $("#list-search").on("keyup", async function () {
         // Treat the entire input as content
         await displayAllRecords(selectFileURL, headers, sortBy, groupBy, hardFilterBy=null, searchFilterBy=value, recordType, firstColIsEditable);
     }
+});
+
+$(document).on("change", ".record-input", function () {
+    let value = $(this).val();
+    let column = $(this).attr("data-col");
+    let $where = $(this).parent().children().first();
+    let whereValue = ($where.val() == null || $where.val() === "") ? $where.text() : $where.val();
+
+    $.ajax({  
+        type: "POST",  
+        url: updateFileURL,
+        data: {
+            whereValue: whereValue,
+            colToUpdate: column,
+            newValue: value
+        },
+        success: function (response) {
+            if (parseInt(response) === 1) {
+                modal("success", `Successfully updated record!`);
+            } else {
+                console.error(response);
+            }
+        }
+    });
 });
 
 // Helpers
