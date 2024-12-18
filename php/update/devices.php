@@ -8,13 +8,13 @@ require($_SERVER["DOCUMENT_ROOT"]."/php/database/queries.php");
 $data = array_filter($_POST);
 $whereValue = $data["whereValue"]; // `serial`
 $colToUpdate = $data["colToUpdate"];
-$newValue = $data["newValue"];
+$newValue = $data["newValue"] ?? null;
 
 // Main update query
 $Query = new Query(
     $conn,
     "i",
-    "UPDATE cbinventory SET `$colToUpdate`=? WHERE `sid`=?;",
+    "UPDATE cbinventory SET `$colToUpdate`=? WHERE `serial`=?;",
     "ss",
     $newValue,
     $whereValue

@@ -8,7 +8,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/php/database/queries.php");
 $data = array_filter($_POST);
 $whereValue = $data["whereValue"]; // `sid`
 $colToUpdate = $data["colToUpdate"];
-$newValue = $data["newValue"];
+$newValue = $data["newValue"] ?? null;
 
 // Main update query
 $Query = new Query(

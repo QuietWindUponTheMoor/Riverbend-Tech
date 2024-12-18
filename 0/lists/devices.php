@@ -13,7 +13,7 @@
     <?php require($_SERVER["DOCUMENT_ROOT"]."/inc/navbar.php"); ?>
 
     <div class="list-container">
-        <h3>Students List</h3>
+        <h3>Devices List</h3>
 
         <script type="text/javascript" src="/src/scripts/list/_recordConfig.js"></script>
         <script type="text/javascript">
