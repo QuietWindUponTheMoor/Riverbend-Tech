@@ -15,6 +15,7 @@ $Query = new Query(
     $conn,
     "i",
     "UPDATE students SET `$colToUpdate`=? WHERE `sid`=?;",
+    "ss",
     $newValue,
     $whereValue
 ) or die("There was an issue collecting data from the database, please try again or contact an administrator.");

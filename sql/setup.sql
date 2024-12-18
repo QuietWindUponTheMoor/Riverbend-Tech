@@ -141,7 +141,7 @@ BEGIN
             AND person != 'NONE'; -- Unjoin old loaner with student
         UPDATE cbinventory SET person=NEW.sid, assignment='LOANER'
             WHERE asset=NEW.loaner_asset
-            AND person != NEW.sid;
+            AND person != NEW.sid; -- Join new loaner with student
         UPDATE checkouts SET loanerCB=NEW.loaner_asset
             WHERE studentID=NEW.sid
             AND loanerCB != NEW.loaner_asset;
