@@ -94,8 +94,7 @@ FOR EACH ROW
 BEGIN
     -- Update the student to reflect the loaner they were assigned
     UPDATE students SET loaner_asset=NEW.loanerCB
-        WHERE `sid`=NEW.studentID
-        AND loaner_asset != NEW.loanerCB;
+        WHERE `sid`=NEW.studentID;
     -- Update the device itself to reflect which student it is assigned to
     UPDATE cbinventory SET assignment='LOANER', person=NEW.studentID
         WHERE asset=NEW.loanerCB

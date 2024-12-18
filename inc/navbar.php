@@ -4,43 +4,108 @@
 
     <div class="section">
         <span class="subsection">
-            <a class="nav-title" href="/">Riverbend Tech Team</a>
+            <span class="subsection-button" id="nav-home-trigger" onclick="window.location.assign('/');">
+                <div class="subsection-button-image-container" id="nav-home-trigger-image-container"><img id="nav-home-icon" src="/assets/techteamlogo.png"/></div>
+            </span>
         </span>
-        <span class="subsection" id="admin-dropdown-trigger">
-            <a class="nav-button" id="nav-menu-button">Menu</a>
+
+        <div class="subsection _manager" id="nav-dropdown-main-container">
+            <span class="subsection-button" id="admin-dropdown-trigger">
+                <div class="subsection-button-image-container" id="nav-menu-trigger-image-container"><img id="nav-menu-icon" src="/assets/icons/menu_3f3fda.png"/></div>
+                <a class="nav-button" id="nav-menu-button">Riverbend Tech Team</a>
+            </span>
             <div id="admin-dropdown">
                 <div class="dropdown-section">
-                    <p class="section-title">Lists</p>
-                    <a class="section-link" href="/0/lists/students">Students</a>
-                    <a class="section-link" href="/0/lists/devices">Devices</a>
-                    <a class="section-link" href="/0/lists/device-issues">Device Issues</a>
+
+                    <div class="section-title-container _manager">
+                        <div class="dropdown-section-title-icon"><img src="/assets/icons/list_dark.png"/></div>
+                        <p class="section-title">Lists</p>
+                    </div>
+
+                    <div class="section-link-container _admin">
+                        <div class="dropdown-section-link-icon"><img src="/assets/icons/boy_dark.png"/></div>
+                        <a class="section-link" href="/0/lists/students">Students</a>
+                    </div>
+
+                    <div class="section-link-container _admin">
+                        <div class="dropdown-section-link-icon"><img src="/assets/icons/chromebook_dark.png"/></div>
+                        <a class="section-link" href="/0/lists/devices">Devices</a>
+                    </div>
+
+                    <div class="section-link-container _manager">
+                        <div class="dropdown-section-link-icon"><img src="/assets/icons/repair_dark.png"/></div>
+                        <a class="section-link" href="/0/lists/device-issues">Device Issues</a>
+                    </div>
+
                 </div>
                 <div class="dropdown-section">
-                    <p class="section-title">Add New</p>
-                    <a class="section-link" href="/0/new/checkout">Checkout</a>
-                    <a class="section-link _manager" href="/0/new/device">Devices</a>
-                    <a class="section-link _admin" href="/0/new/student">Students</a>
-                    <a class="section-link _admin" href="/0/new/administrator">Admins</a>
-                    <a class="section-link _admin" href="/0/new/manager">Managers</a>
-                    <a class="section-link _admin" href="/0/new/allowlist_user">Allowlist User</a>
+
+                    <div class="section-title-container _manager">
+                        <div class="dropdown-section-title-icon"><img src="/assets/icons/add_circle_solid_dark.png"/></div>
+                        <p class="section-title">New</p>
+                    </div>
+
+                    <div class="section-link-container _admin">
+                        <div class="dropdown-section-link-icon"><img src="/assets/icons/boy_dark.png"/></div>
+                        <a class="section-link" href="/0/new/student">Students</a>
+                    </div>
+
+                    <div class="section-link-container _admin">
+                        <div class="dropdown-section-link-icon"><img src="/assets/icons/chromebook_dark.png"/></div>
+                        <a class="section-link" href="/0/new/device">Devices</a>
+                    </div>
+
+                    <div class="section-link-container _manager">
+                        <div class="dropdown-section-link-icon"><img src="/assets/icons/repairs_dark.png"/></div>
+                        <a class="section-link" href="/0/new/checkout">Checkout</a>
+                    </div>
+
+                    <div class="section-link-container _admin">
+                        <div class="dropdown-section-link-icon"><img src="/assets/icons/admins_dark.png"/></div>
+                        <a class="section-link" href="/0/new/administrator">Admins</a>
+                    </div>
+
+                    <div class="section-link-container _admin">
+                        <div class="dropdown-section-link-icon"><img src="/assets/icons/vip_dark.png"/></div>
+                        <a class="section-link" href="/0/new/manager">Managers</a>
+                    </div>
+
+                    <div class="section-link-container _admin">
+                        <div class="dropdown-section-link-icon"><img src="/assets/icons/allowlist_user_dark.png"/></div>
+                        <a class="section-link" href="/0/new/allowlist_user">Allowlist User</a>
+                    </div>
+
+                    <div class="section-link-container _manager">
+                        <div class="dropdown-section-link-icon"><img src="/assets/icons/email_groups_dark.png"/></div>
+                        <a class="section-link" href="/0/create/email_groups">Email Groups</a>
+                    </div>
+
                 </div>
                 <div class="dropdown-section">
-                    <p class="section-title">Create</p>
-                    <a class="section-link _manager" href="/0/create/email_groups">Email Groups</a>
-                </div>
-                <div class="dropdown-section">
-                    <p class="section-title">Export</p>
-                    <a class="section-link _manager" href="/0/export/students">Students</a>
-                    <a class="section-link _manager" href="/0/export/devices">Devices</a>
-                    <a class="section-link _manager" href="/0/export/users">Users</a>
-                </div>
-                <div class="dropdown-section">
-                    <p class="section-title">Import</p>
-                    <a class="section-link _manager" href="/0/import/students">Students</a>
-                    <a class="section-link _manager" href="/0/import/devices">Devices</a>
+
+                    <div class="section-title-container _manager">
+                        <div class="dropdown-section-title-icon"><img src="/assets/icons/export_dark.png"/></div>
+                        <p class="section-title">Export</p>
+                    </div>
+
+                    <div class="section-link-container _manager">
+                        <div class="dropdown-section-link-icon"><img src="/assets/icons/boy_dark.png"/></div>
+                        <a class="section-link" href="/0/export/students">Students</a>
+                    </div>
+
+                    <div class="section-link-container _manager">
+                        <div class="dropdown-section-link-icon"><img src="/assets/icons/chromebook_dark.png"/></div>
+                        <a class="section-link" href="/0/export/devices">Devices</a>
+                    </div>
+
+                    <div class="section-link-container _manager">
+                        <div class="dropdown-section-link-icon"><img src="/assets/icons/users_dark.png"/></div>
+                        <a class="section-link" href="/0/export/users">Users</a>
+                    </div>
+
                 </div>
             </div>
-        </span>
+        </div>
     </div>
 
     <span class="section account-section">
@@ -59,7 +124,7 @@
 <script type="text/javascript">
 // Navbar
 let adminDropdownToggled = false;
-$("#admin-dropdown-trigger").on("click", function () {
+$("#nav-dropdown-main-container").on("click", function () {
     if (!adminDropdownToggled) {
         $("#admin-dropdown").css("display", "flex");
         adminDropdownToggled = true;
@@ -68,6 +133,18 @@ $("#admin-dropdown-trigger").on("click", function () {
         adminDropdownToggled = false;
     }
 });
+
+// Nav button icons
+$("#admin-dropdown-trigger").hover(
+    // On hover
+    function () {
+        $("#nav-menu-icon").attr("src", "/assets/icons/menu.png");
+    },
+    // On not-hover
+    function () {
+        $("#nav-menu-icon").attr("src", "/assets/icons/menu_3f3fda.png");
+    }
+);
 
 // User
 let user = null;

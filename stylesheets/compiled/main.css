@@ -174,24 +174,41 @@ a {
   justify-content: center;
   align-items: center;
   gap: 5px;
-}
-.navbar .section .subsection .nav-title, .navbar .section .subsection .nav-button, .navbar .section .subsection .nav-button-secondary {
   padding: 0.5rem;
-  cursor: pointer;
 }
-.navbar .section .subsection .nav-title:hover, .navbar .section .subsection .nav-button:hover, .navbar .section .subsection .nav-button-secondary:hover {
-  background-color: #e6e6e6;
+.navbar .section .subsection .subsection-button {
+  flex-direction: row;
+  border: 1px solid hsl(240, 68%, 55%);
+  border-radius: 2px;
+  transition: background-color 100ms linear;
+  cursor: pointer !important;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
-.navbar .section .subsection .nav-title {
-  font-size: 130%;
-  font-weight: 500;
-}
-.navbar .section .subsection #nav-menu-button {
-  border: 1px solid rgb(63, 63, 218);
-}
-.navbar .section .subsection #nav-menu-button:hover {
-  background-color: rgb(63, 63, 218);
+.navbar .section .subsection .subsection-button:hover {
+  background-color: hsl(240, 68%, 55%);
   color: white;
+}
+.navbar .section .subsection .subsection-button .subsection-button-image-container {
+  width: 30px;
+  aspect-ratio: 1/1;
+  height: 30px;
+}
+.navbar .section .subsection .subsection-button #nav-home-trigger-image-container {
+  width: 40px;
+  aspect-ratio: 1/1;
+  height: 40px;
+}
+.navbar .section .subsection .subsection-button .nav-button {
+  font-weight: 600;
+  flex-grow: 1;
+}
+.navbar .section .subsection .subsection-button .nav-button:hover {
+  background-color: transparent;
+}
+.navbar .section .subsection #admin-dropdown-trigger {
+  padding: 0.25rem;
 }
 .navbar .section .subsection .nav-button, .navbar .section .subsection .nav-button-secondary {
   flex-direction: column;
@@ -203,84 +220,108 @@ a {
   padding: 5px;
   padding-top: 4px;
 }
-.navbar .section .subsection .nav-user {
+.navbar .section #nav-dropdown-main-container {
+  position: relative;
+}
+.navbar .section #nav-dropdown-main-container * {
+  z-index: 99 !important;
+}
+.navbar .section #nav-dropdown-main-container img {
+  width: 100%;
+  width: 100%;
+}
+.navbar .section #nav-dropdown-main-container #admin-dropdown {
+  position: absolute;
+  flex-direction: row;
+  display: none;
+  top: calc(100% + 5px);
+  left: 0;
+  min-width: 0;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid hsl(240, 68%, 55%);
+  gap: 1rem;
+  flex-wrap: wrap;
+  cursor: default;
+}
+.navbar .section #nav-dropdown-main-container #admin-dropdown .dropdown-section {
+  flex-direction: column;
+  min-width: 200px;
+  flex-wrap: wrap;
+  color: #292524 !important;
+}
+.navbar .section #nav-dropdown-main-container #admin-dropdown .dropdown-section .section-title-container {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+.navbar .section #nav-dropdown-main-container #admin-dropdown .dropdown-section .section-title-container .dropdown-section-title-icon {
+  width: 35px;
+  aspect-ratio: 1/1;
+  height: 35px;
+}
+.navbar .section #nav-dropdown-main-container #admin-dropdown .dropdown-section .section-title-container .section-title {
+  font-size: 110%;
+  font-weight: 600;
+}
+.navbar .section #nav-dropdown-main-container #admin-dropdown .dropdown-section .section-link-container {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 1rem;
+  gap: 5px;
+}
+.navbar .section #nav-dropdown-main-container #admin-dropdown .dropdown-section .section-link-container:hover {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+.navbar .section #nav-dropdown-main-container #admin-dropdown .dropdown-section .section-link-container:hover .section-link {
+  font-size: 100%;
+}
+.navbar .section #nav-dropdown-main-container #admin-dropdown .dropdown-section .section-link-container .dropdown-section-link-icon {
+  width: 20px;
+  aspect-ratio: 1/1;
+  height: 20px;
+}
+.navbar .section #nav-dropdown-main-container #admin-dropdown .dropdown-section .section-link-container .section-link {
+  font-weight: 500;
+  font-size: 80%;
+  padding-inline: 3px;
+  padding-left: 8px;
+  transition: font-size 300ms;
+  border-radius: 3px;
+}
+.navbar .account-section {
+  justify-content: flex-end;
+}
+.navbar .account-section .subsection #signout-button:hover {
+  cursor: pointer;
+  background-color: rgb(255, 188, 64);
+}
+.navbar .account-section .subsection .nav-user {
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 10px;
   padding: 0.5rem;
 }
-.navbar .section .subsection .nav-user .image-container {
+.navbar .account-section .subsection .nav-user .image-container {
   width: 23px;
   aspect-ratio: 1/1;
   height: 23px;
 }
-.navbar .section .subsection .nav-user .image-container img {
+.navbar .account-section .subsection .nav-user .image-container img {
   width: 100%;
   height: 100%;
   border-radius: 1000px;
   background-color: black;
 }
-.navbar .section .subsection .nav-user .name {
+.navbar .account-section .subsection .nav-user .name {
   font-weight: 500 !important;
   font-size: 80%;
-}
-.navbar .section #admin-dropdown-trigger {
-  min-width: 100px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-}
-.navbar .section #admin-dropdown-trigger .nav-button {
-  border-radius: 0;
-  width: 100%;
-}
-.navbar .section #admin-dropdown-trigger:hover #admin-dropdown {
-  display: flex;
-  z-index: 99 !important;
-}
-.navbar .section #admin-dropdown-trigger #admin-dropdown {
-  position: absolute;
-  flex-direction: row;
-  display: none;
-  top: calc(100% + 5px);
-  left: 50%;
-  transform: translate(-50%);
-  min-width: 60vw;
-  padding: 1rem;
-  background-color: white;
-  border-radius: 3px;
-  border: 1px solid red;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.navbar .section #admin-dropdown-trigger #admin-dropdown * {
-  z-index: 99 !important;
-}
-.navbar .section #admin-dropdown-trigger #admin-dropdown .dropdown-section {
-  flex-direction: column;
-  min-width: 19%;
-  flex-wrap: wrap;
-}
-.navbar .section #admin-dropdown-trigger #admin-dropdown .dropdown-section .section-title {
-  font-size: 110%;
-  font-weight: 600;
-}
-.navbar .section #admin-dropdown-trigger #admin-dropdown .dropdown-section .section-link {
-  font-weight: 100;
-  font-size: 80%;
-  padding-inline: 3px;
-  padding-left: 8px;
-  transition: font-size, font-weight 300ms;
-}
-.navbar .section #admin-dropdown-trigger #admin-dropdown .dropdown-section .section-link:hover {
-  background-color: #e6e6e6;
-  font-size: 100%;
-  font-weight: 500;
-  background-color: rgba(255, 0, 0, 0.1);
-}
-.navbar .account-section {
-  justify-content: flex-end;
 }
 
 @media (max-width: 1000px) {

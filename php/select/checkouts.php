@@ -13,7 +13,8 @@ $Query = new Query(
     "SELECT 
         checkouts.*, 
         students.first, 
-        students.last
+        students.last,
+        students.grade
     FROM 
         checkouts
     LEFT JOIN 

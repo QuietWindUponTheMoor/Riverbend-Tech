@@ -152,6 +152,7 @@ a {
     border-bottom: 1px solid rgba($main-text, 0.5);
     gap: 2rem;
     flex-wrap: wrap;
+    $navBtnColor: hsl(240, 68%, 55%);
     .section {
         flex-direction: row;
         justify-content: flex-start;
@@ -163,24 +164,38 @@ a {
             justify-content: center;
             align-items: center;
             gap: 5px;
-            .nav-title, .nav-button, .nav-button-secondary {
-                padding: 0.5rem;
-                cursor: pointer;
-                &:hover {
-                    background-color: darken(white, 10%);
-                }
-            }
-            .nav-title {
-                font-size: 130%;
-                font-weight: 500;
-            }
-            #nav-menu-button {
-                $navBtnColor: rgb(63, 63, 218);
+            padding: 0.5rem;
+            .subsection-button {
+                flex-direction: row;
                 border: 1px solid $navBtnColor;
+                border-radius: 2px;
+                transition: background-color 100ms linear;
+                cursor: pointer !important;
+                user-select: none;
                 &:hover {
                     background-color: $navBtnColor;
                     color: white;
                 }
+                .subsection-button-image-container {
+                    width: 30px;
+                    aspect-ratio: 1 / 1;
+                    height: 30px;
+                }
+                #nav-home-trigger-image-container {
+                    width: 40px;
+                    aspect-ratio: 1 / 1;
+                    height: 40px;
+                }
+                .nav-button {
+                    font-weight: 600;
+                    flex-grow: 1;
+                    &:hover {
+                        background-color: transparent;
+                    }
+                }
+            }
+            #admin-dropdown-trigger {
+                padding: 0.25rem;
             }
             .nav-button, .nav-button-secondary {
                 flex-direction: column;
@@ -191,6 +206,89 @@ a {
                 border-radius: 1000px;
                 padding: 5px;
                 padding-top: 4px;
+            }
+            
+        }
+        #nav-dropdown-main-container {
+            position: relative;
+            * {
+                z-index: 99 !important;
+            }
+            img {
+                width: 100%;
+                width: 100%;
+            }
+            #admin-dropdown {
+                position: absolute;
+                flex-direction: row;
+                display: none;
+                top: calc(100% + 5px);
+                left: 0;
+                min-width: 0;
+                width: max-content;
+                padding: 1rem;
+                background-color: white;
+                border-radius: 3px;
+                border: 1px solid $navBtnColor;
+                gap: 1rem;
+                flex-wrap: wrap;
+                cursor: default;
+                .dropdown-section {
+                    flex-direction: column;
+                    min-width: 200px;
+                    flex-wrap: wrap;
+                    color: $main-text !important;
+                    .section-title-container {
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: center;
+                        gap: 5px;
+                        .dropdown-section-title-icon {
+                            width: 35px;
+                            aspect-ratio: 1 / 1;
+                            height: 35px;
+                        }
+                        .section-title {
+                            font-size: 110%;
+                            font-weight: 600;
+                        }
+                    }
+                    .section-link-container {
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: center;
+                        padding-left: 1rem;
+                        gap: 5px;
+                        &:hover {
+                            background-color: rgba(red, 0.1);
+                        }
+                        &:hover .section-link {
+                            font-size: 100%;
+                        }
+                        .dropdown-section-link-icon {
+                            width: 20px;
+                            aspect-ratio: 1 / 1;
+                            height: 20px;
+                        }
+                        .section-link {
+                            font-weight: 500;
+                            font-size: 80%;
+                            padding-inline: 3px;
+                            padding-left: 8px;
+                            transition: font-size 300ms;
+                            border-radius: 3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .account-section {
+        justify-content: flex-end;
+        .subsection {
+            #signout-button:hover {
+                cursor: pointer;
+                background-color: rgb(255, 188, 64);
             }
             .nav-user {
                 flex-direction: row;
@@ -215,61 +313,6 @@ a {
                 }
             }
         }
-        #admin-dropdown-trigger {
-            min-width: 100px;
-            user-select: none;
-            .nav-button {
-                border-radius: 0;
-                width: 100%;
-            }
-            &:hover #admin-dropdown {
-                display: flex;
-                z-index: 99 !important;
-            }
-            #admin-dropdown {
-                position: absolute;
-                flex-direction: row;
-                display: none;
-                top: calc(100% + 5px);
-                left: 50%;
-                transform: translate(-50%);
-                min-width: 60vw;
-                padding: 1rem;
-                background-color: white;
-                border-radius: 3px;
-                border: 1px solid red;
-                gap: 1rem;
-                flex-wrap: wrap;
-                * {
-                    z-index: 99 !important;
-                }
-                .dropdown-section {
-                    flex-direction: column;
-                    min-width: 19%;
-                    flex-wrap: wrap;
-                    .section-title {
-                        font-size: 110%;
-                        font-weight: 600;
-                    }
-                    .section-link {
-                        font-weight: 100;
-                        font-size: 80%;
-                        padding-inline: 3px;
-                        padding-left: 8px;
-                        transition: font-size, font-weight 300ms;
-                        &:hover {
-                            background-color: darken(white, 10%);
-                            font-size: 100%;
-                            font-weight: 500;
-                            background-color: rgba(red, 0.1);
-                        }
-                    }
-                }
-            }
-        }
-    }
-    .account-section {
-        justify-content: flex-end;
     }
 }
 @media (max-width: 1000px) {

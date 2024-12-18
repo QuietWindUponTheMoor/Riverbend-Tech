@@ -22,10 +22,8 @@ let recordConfig = {
         record.studentID,
         record.last,
         record.first,
-        record.assignedCB,
         record.loanerCB,
-        record.school,
         record.grade,
-        record.issue
+        record.issue,
     ],
 };

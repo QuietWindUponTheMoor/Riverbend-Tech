@@ -12,8 +12,22 @@
 <body id="main">
     <?php require($_SERVER["DOCUMENT_ROOT"]."/inc/navbar.php"); ?>
 
-    <div class="new-device-form">
-        <h3>Submit New Students</h3>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+
+    <div class="new-device-form import-export-form">
+
+        <h3>Bulk Upload Students</h3>
+
+        <input type="file" id="import-csv" accept=".csv", multiple/>
+
+        <div class="progress-container">
+            <label for="upload-progress" id="progress-percent">-</label>
+            <progress id="upload-progress" value="0" max="100"></progress>
+            <label for="upload-progress" id="progress-filename">-</label>
+            <p id="upload-result"></p>
+        </div>
+
+        <h3>Manually Submit New Students</h3>
 
         <div class="submissions">
             <!-- Label section -->
@@ -66,6 +80,7 @@
     <script type="text/javascript" src="/src/scripts/confirmation.js"></script>
     <script type="text/javascript" src="/src/scripts/modals.js"></script>
     <script type="text/javascript" src="/src/scripts/forms/new_student.js"></script>
+    <script type="text/javascript" src="/src/scripts/import/student.js"></script>
  
 </body>
 </html>

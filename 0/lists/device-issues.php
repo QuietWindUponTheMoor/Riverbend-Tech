@@ -30,9 +30,7 @@
             {identifier: "studentID", value: "Student ID", placeholder: ""},
             {identifier: "last", value: "Last Name", placeholder: ""},
             {identifier: "first", value: "First Name", placeholder: ""},
-            {identifier: "assignedCB", value: "Broken Device #", placeholder: ""},
             {identifier: "loanerCB", value: "Loaner #", placeholder: ""},
-            {identifier: "school", value: "Building/School", placeholder: ""},
             {identifier: "grade", value: "Grade", placeholder: ""},
             {identifier: "issue", value: "Brief Issue", placeholder: ""},
         ];
