@@ -38,9 +38,6 @@ async function processRecord(record) {
             let serial = record.serial;
             let PO = record.purchaseorder?.trim().length ? record.purchaseorder : null;
             let model = record.model;
-            let building = record.building;
-            let assignment = record.assignment;
-            let person = record.person;
 
             // Insert data
             let data = {
@@ -48,9 +45,6 @@ async function processRecord(record) {
                 serial: serial,
                 PurchaseOrder: PO,
                 model: model,
-                building: building,
-                assignment: assignment,
-                person: person
             };
             $.ajax({
                 type: "POST",  
@@ -110,12 +104,9 @@ async function processPapaParse(file) {
                         "asset",
                         "serial",
                         "model",
-                        "building",
-                        "assignment",
                     ];
                     const optionalHeaders = [
                         "purchaseorder",
-                        "person"
                     ];
                     let data = results.data;
                     let headers = results.meta.fields;

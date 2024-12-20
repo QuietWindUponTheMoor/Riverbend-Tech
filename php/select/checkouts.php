@@ -14,13 +14,14 @@ $Query = new Query(
         checkouts.*, 
         students.first, 
         students.last,
-        students.grade
+        students.grade,
+        devices.asset AS loaner
     FROM 
         checkouts
     LEFT JOIN 
-        students 
-    ON 
-        checkouts.studentID = students.sid;",
+        students ON checkouts.studentID = students.sid
+    LEFT JOIN 
+        devices ON students.loaner = devices.deviceID;",
 ) or die("There was an issue collecting data from the database, please try again or contact an administrator.");
 $result = $Query->result;
 

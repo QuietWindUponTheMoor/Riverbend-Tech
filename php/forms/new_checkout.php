@@ -14,11 +14,27 @@ $issue = $data["issue"];
 $insert = new Query(
     $conn,
     "i",
-    "INSERT INTO checkouts (studentID, loanerCB, issue) VALUES (?, ?, ?);",
-    "sss",
+    "INSERT INTO checkouts (`sid`, issue) VALUES (?, ?, ?);",
+    "ss",
     $sid,
-    strtoupper($loaner),
     $issue,
+) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
+
+$insert = new Query(
+    $conn,
+    "i",
+    "UPDATE devices SET assignment = 'LOANER' WHERE UPPER(asset) = UPPER(?);",
+    "s",
+    $loaner
+) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
+
+$insert = new Query(
+    $conn,
+    "i",
+    "UPDATE students SET loaner_asset = UPPER(?) WHERE `sid` = ?;",
+    "ss",
+    $loaner,
+    $sid
 ) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
 
 echo 1;

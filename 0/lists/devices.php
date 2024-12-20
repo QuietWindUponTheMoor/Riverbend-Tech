@@ -27,13 +27,12 @@
         let searchFilterBy = null;
         let recordType = recordConfig.devices;
         let headers = [ // Identifier must be exactly the same as table column name
-            {identifier: "serial", value: "Serial #", placeholder: "", editable: true},
-            {identifier: "asset", value: "Asset Tag", placeholder: "", editable: true},
-            {identifier: "model", value: "Model #", placeholder: "", editable: true},
-            {identifier: "PO", value: "Purchase Order", placeholder: "", editable: true},
-            {identifier: "building", value: "building", placeholder: "", editable: true},
-            {identifier: "assignment", value: "Assignment", placeholder: "", editable: false},
-            {identifier: "person", value: "Person/Student", placeholder: "", editable: false},
+            {identifier: "serial", value: "Serial #", placeholder: ""},
+            {identifier: "asset", value: "Asset Tag", placeholder: ""},
+            {identifier: "model", value: "Model #", placeholder: ""},
+            {identifier: "PO", value: "Purchase Order", placeholder: ""},
+            {identifier: "assignment", value: "Assignment", placeholder: ""},
+            {identifier: "isLoanedOut", value: "Is Loaned Out", placeholder: ""}
         ];
         let selectFileURL = "/php/select/devices.php";
         let updateFileURL = "/php/update/devices.php";

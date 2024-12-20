@@ -26,8 +26,8 @@ $loaner = $loaner ? strtoupper($loaner) : null;
 $insert = new Query(
     $conn,
     "i",
-    "INSERT INTO students (`sid`, `first`, `last`, grade, homeroom, email, device_asset, loaner_asset)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    "INSERT INTO students (`sid`, `first`, `last`, grade, homeroom, email, device, loaner)
+    VALUES (?, ?, ?, UPPER(?), ?, ?, (SELECT IFNULL(deviceID, NULL) FROM devices WHERE UPPER(asset) = UPPER(?) LIMIT 1), (SELECT IFNULL(deviceID, NULL) FROM devices WHERE UPPER(asset) = UPPER(?) LIMIT 1))
     ON DUPLICATE KEY UPDATE
         `sid`=VALUES(`sid`),
         `first`=VALUES(`first`),
@@ -35,13 +35,13 @@ $insert = new Query(
         grade=VALUES(grade),
         homeroom=VALUES(homeroom),
         email=VALUES(email),
-        device_asset=VALUES(device_asset),
-        loaner_asset=VALUES(loaner_asset);",
+        device=VALUES(device),
+        loaner=VALUES(loaner);",
     "ssssssss",
     $sid,
     ucfirst($first),
     ucfirst($last),
-    strtoupper($grade),
+    $grade,
     $homeroom,
     $email,
     $asset,

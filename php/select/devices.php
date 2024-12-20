@@ -10,7 +10,15 @@ $data = array_filter($_POST);
 $Query = new Query(
     $conn,
     "sa",
-    "SELECT * FROM cbinventory;",
+    "SELECT 
+        devices.*,
+        CASE 
+            WHEN EXISTS (SELECT 1 FROM students WHERE students.loaner = devices.asset) 
+            THEN 'TRUE'
+            ELSE 'FALSE'
+        END AS isLoanedOut
+    FROM 
+        devices;",
 ) or die("There was an issue collecting data from the database, please try again or contact an administrator.");
 $result = $Query->result;
 

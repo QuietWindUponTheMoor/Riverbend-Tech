@@ -10,7 +10,16 @@ $data = array_filter($_POST);
 $Query = new Query(
     $conn,
     "sa",
-    "SELECT * FROM students;",
+    "SELECT 
+        sid, 
+        first, 
+        last, 
+        grade, 
+        homeroom, 
+        email, 
+        (SELECT asset FROM devices WHERE devices.deviceID = students.loaner) AS loaner,
+        (SELECT asset FROM devices WHERE devices.deviceID = students.device) AS device
+    FROM students;",
 ) or die("There was an issue collecting data from the database, please try again or contact an administrator.");
 $result = $Query->result;
 

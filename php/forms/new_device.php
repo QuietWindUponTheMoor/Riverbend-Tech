@@ -16,31 +16,23 @@ $serial = $data["serial"];
 $PO = $data["PurchaseOrder"] ?? null;
 $model = $data["model"];
 $building = $data["building"];
-$assignment = $data["assignment"];
-$person = $data["person"];
 
 // Update device record
 $insert = new Query(
     $conn,
     "i",
-    "INSERT INTO cbinventory (asset, `serial`, PO, model, building, assignment, person)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    "INSERT INTO devices (asset, `serial`, PO, model)
+    VALUES (UPPER(?), UPPER(?), UPPER(?), UPPER(?))
     ON DUPLICATE KEY UPDATE
-        assignment=VALUES(assignment),
-        person=VALUES(person),
         asset=VALUES(asset),
         `serial`=VALUES(`serial`),
         PO=VALUES(PO),
-        model=VALUES(model),
-        building=VALUES(building);",
-    "sssssss",
-    strtoupper($asset),
-    strtoupper($serial),
-    strtoupper($PO),
-    strtoupper($model),
-    strtoupper($building),
-    strtoupper($assignment),
-    $person
+        model=VALUES(model);",
+    "ssss",
+    $asset,
+    $serial,
+    $PO,
+    $model,
 ) or die("There was an issue inserting the data into the database, please try again or contact an administrator.");
 
 echo 1;

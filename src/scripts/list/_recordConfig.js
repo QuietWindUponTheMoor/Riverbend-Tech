@@ -6,17 +6,16 @@ let recordConfig = {
         record.grade,
         record.homeroom,
         record.email,
-        record.device_asset,
-        record.loaner_asset
+        record.device,
+        record.loaner
     ],
     devices: record => [
         record.serial,
         record.asset,
         record.model,
         record.PO,
-        record.building,
         record.assignment,
-        record.person
+        record.isLoanedOut
     ],
     checkouts: record => [
         record.studentID,
