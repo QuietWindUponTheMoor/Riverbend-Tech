@@ -1,0 +1,1 @@
+ALTER TABLE cbinventory ADD CONSTRAINT unique_serial UNIQUE (`serial`);

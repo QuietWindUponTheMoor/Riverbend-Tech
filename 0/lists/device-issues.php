@@ -36,7 +36,7 @@
         ];
         let selectFileURL = "/php/select/checkouts.php";
         let updateFileURL = "/php/update/device-issues.php";
-        let firstColIsEditable = true;
+        let firstColIsEditable = false;
         </script>
 
         <div class="sorting-and-grouping">
